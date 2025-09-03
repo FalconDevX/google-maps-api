@@ -1,0 +1,52 @@
+.welcome-screen-main {
+  margin: 0;
+  background-color: #000; 
+  background-image:
+    radial-gradient(1200px 600px at 70% -10%, rgba(16,185,129,.10), transparent 60%),
+    radial-gradient(800px 400px at 10% 20%, rgba(16,185,129,.08), transparent 60%);
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+.main-content {
+  display: flex;
+  min-height: calc(100vh - 80px);
+  padding: 2rem 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 4rem;
+}
+
+.left-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 600px;
+  padding-top: 4rem;
+  
+}
+
+.main-heading {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 2rem 0;
+  color: #fff;
+}
+
+.heading-line {
+  display: block;
+}
+
+.heading-line-green {
+  color: #00D492;
+}
+
+.main-description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #d4d4d8;
+  margin: 0;
+  max-width: 500px;
+}
