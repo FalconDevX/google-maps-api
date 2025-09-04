@@ -1,3 +1,4 @@
+```
 Instrukcja
 npm create vite@latest my-app
 React -> JavaScript JWC
