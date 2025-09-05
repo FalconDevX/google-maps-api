@@ -7,10 +7,12 @@ const DemoCard = ({ location, country, title, description, tags = [], image }) =
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const likeOpacity = useTransform(x, [0, 180, 220], [0, 0, 1]);
-  const dislikeOpacity = useTransform(x, [0, -180, -220], [0, 0, 1]);
-  const likeScale = useTransform(x, [0, 180, 260], [0.8, 1, 1.2]);
-  const dislikeScale = useTransform(x, [0, -180, -260], [0.8, 1, 1.2]);
+  const likeOpacity = useTransform(x, [0, 100, 140], [0, 0, 1]);
+  const dislikeOpacity = useTransform(x, [0, -100, -140], [0, 0, 1]);
+
+  const likeScale = useTransform(x, [0, 100, 160], [0.8, 1, 1.3]);
+  const dislikeScale = useTransform(x, [0, -100, -160], [0.8, 1, 1.3]);
+
   const rotate = useTransform(x, [-100, 0, 100], [-5, 0, 5]);
 
   return (
