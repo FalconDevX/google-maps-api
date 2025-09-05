@@ -1,4 +1,5 @@
-﻿bin/
+﻿# Build results
+bin/
 obj/
 Debug/
 Release/
@@ -7,12 +8,14 @@ x86/
 [Bb]uild/
 [Ll]ogs/
 
+# Visual Studio
 .vs/
 *.user
 *.suo
 *.userosscache
 *.sln.docstates
 
+# Temp files
 *.tmp
 *.temp
 *.log
@@ -22,18 +25,26 @@ x86/
 *.VC.db
 *.vscode/
 
+# Publish output
 publish/
 out/
 
+# Database
 *.dbmdl
 *.bak
 *.mdf
 *.ldf
 
+# NuGet
 *.nupkg
 *.snupkg
 packages/
 .nuget/
 
+# Rider / JetBrains
 .idea/
 *.iml
+
+# Ignore secrets/configs (appsettings)
+appsettings.json
+appsettings.*.json
