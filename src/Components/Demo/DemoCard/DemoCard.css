@@ -1,0 +1,192 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.demo-card-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.demo-card {
+  user-select: none;  
+  width: 100%;
+  max-width: 400px;
+  height: 600px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    0 8px 40px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.card-label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  pointer-events: none;
+}
+
+.card-label-dislike {
+  left: 20px;
+  background-color: #ef4444;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.6);
+}
+
+.card-label-like {
+  right: 20px;
+  background-color: #22c55e;
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.6);
+}
+
+.demo-card img {
+  pointer-events: none;    
+}
+
+.card-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+.location-tag {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: rgba(52, 211, 153, 0.2);
+  color: rgb(110, 231, 183);
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 3px solid rgba(52, 211, 153, 0.8);
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(10px);
+  font-size: 0.8rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.earth-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.earth-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  color: rgb(238, 238, 238);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.card-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.location-pin svg {
+  height: 20px;
+  width: auto;
+}
+
+.card-description {
+  margin-top: 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  background: rgba(34, 197, 94, 0.9);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.card-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 16px;
+  padding-top: 16px;
+}
+
+.action-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}

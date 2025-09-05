@@ -4,15 +4,18 @@
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  
 }
 
 .login-card {
-  background-color: #1f2937;
+  background-color: #273328;
   border-radius: 12px;
   padding: 2rem;
   width: 100%;
   max-width: 400px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    0 12px 40px 0 rgba(0,0,0,0.55),
+    0 2px 8px 0 rgba(0,0,0,0.5);
 }
 
 .login-title {
@@ -44,7 +47,7 @@
   justify-content: center;
   gap: 0.75rem;
   padding: 0.75rem 1rem;
-  background-color: #374151;
+  background-color: #49584b;
   border: none;
   border-radius: 8px;
   color: #fff;
@@ -100,7 +103,7 @@
   content: '';
   flex: 1;
   height: 1px;
-  background-color: #374151;
+  background-color: #546953;
 }
 
 .separator-text {
@@ -130,7 +133,7 @@
 
 .form-input {
   padding: 0.75rem 1rem;
-  background-color: #374151;
+  background-color: #49584b;
   border: 1px solid #4b5563;
   border-radius: 8px;
   color: #fff;
@@ -140,7 +143,7 @@
 
 .form-input:focus {
   outline: none;
-  border-color: #10b981;
+  border-color: #6AB60F;
 }
 
 .form-input::placeholder {
@@ -150,7 +153,7 @@
 .login-btn {
   width: 100%;
   padding: 0.875rem 1rem;
-  background-color: #10b981;
+  background-color: #6AB60F;
   border: none;
   border-radius: 8px;
   color: #fff;
@@ -162,7 +165,7 @@
 }
 
 .login-btn:hover {
-  background-color: #059669;
+  background-color: #5b9710;
 }
 
 .register-link {

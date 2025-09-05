@@ -1,6 +1,6 @@
 .welcome-screen-main {
   margin: 0;
-  background-color: #000; 
+  background-color: transparent; 
   background-image:
     radial-gradient(1200px 600px at 70% -10%, rgba(16,185,129,.10), transparent 60%),
     radial-gradient(800px 400px at 10% 20%, rgba(16,185,129,.08), transparent 60%);
@@ -40,7 +40,7 @@
 }
 
 .heading-line-green {
-  color: #00D492;
+  color: #8EC135;
 }
 
 .main-description {

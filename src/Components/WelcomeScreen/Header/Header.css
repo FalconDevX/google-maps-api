@@ -6,24 +6,29 @@
   height: 80px;
   padding: 0 2rem;
   position: relative;
-  background-color: #050404;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: #374151;
 }
 
 .logo {
-  height: 200px;
+  height: 100px;
   width: auto;
   position: absolute;
-  justify-content: center;
   left: 2rem;
   top: 50%;
   transform: translateY(-50%);
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
-  clip-path: inset(30% 0 30% 0);
-  margin-top: 4px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.03) translateY(-50%);
 }
 
 .header-right {
@@ -58,10 +63,10 @@
 }
 
 .start-btn {
-  background-color: #10b981;
+  background-color: #6AB60F;
   color: #fff;
 }
 
 .start-btn:hover {
-  background-color: #059669;
+  background-color: #5b9710;
 }
