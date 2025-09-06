@@ -1,6 +1,7 @@
 import "./DemoCard.css";
-import { motion, useMotionValue, animate, useTransform } from "framer-motion";
+import { motion, useMotionValue, animate, useTransform, useMotionValueEvent } from "framer-motion";
 import { MapPin, Earth, XIcon, SaveIcon, Heart } from "lucide-react";
+import { useState } from "react";
 import tatryImage from "../../../assets/pictures/tatry.jpeg";
 
 const DemoCard = ({ location, country, title, description, tags = [], image }) => {
@@ -9,9 +10,16 @@ const DemoCard = ({ location, country, title, description, tags = [], image }) =
 
   const likeOpacity = useTransform(x, [0, 100, 140], [0, 0, 1]);
   const dislikeOpacity = useTransform(x, [0, -100, -140], [0, 0, 1]);
+  const saveOpacity = useTransform(y, [0, 130, 140], [0, 0, 1]);
+  const [showSaveIcon, setShowSaveIcon] = useState(true);
+
+  useMotionValueEvent(y, "change", (latest) => {
+    setShowSaveIcon(latest < 120);
+  });
 
   const likeScale = useTransform(x, [0, 100, 160], [0.8, 1, 1.3]);
   const dislikeScale = useTransform(x, [0, -100, -160], [0.8, 1, 1.3]);
+  const saveScale = useTransform(y, [0, 130, 140], [0.8, 1, 1.3]);
 
   const rotate = useTransform(x, [-100, 0, 100], [-5, 0, 5]);
 
@@ -22,7 +30,7 @@ const DemoCard = ({ location, country, title, description, tags = [], image }) =
         drag
         dragElastic={0.2}
         dragMomentum={false}
-        dragConstraints={{ left: -100, right: 100, top: -50, bottom: 50 }}
+        dragConstraints={{ left: -100, right: 100, top: -200, bottom: 200 }}
         style={{ 
           cursor: "grab", 
           x, 
@@ -53,6 +61,15 @@ const DemoCard = ({ location, country, title, description, tags = [], image }) =
         >
           LIKE
         </motion.div>
+        <motion.div
+          className="card-label card-label-save"
+          style={{
+            opacity: saveOpacity,
+            scale: saveScale
+          }}
+        >
+          SAVE
+        </motion.div>
         <div className="card-image-container">
           <img src={tatryImage} alt={title} className="card-image" />
           <div className="location-tag">
@@ -72,9 +89,17 @@ const DemoCard = ({ location, country, title, description, tags = [], image }) =
             ))}
           </div>
           <div className="card-actions">
-            <button className="action-btn"><XIcon strokeWidth={2} /></button>
-            <button className="action-btn"><SaveIcon strokeWidth={2} /></button>
-            <button className="action-btn"><Heart strokeWidth={2} /></button>
+            <button className={`action-btn action-btn-x${!showSaveIcon ? " move-left" : ""}`}>
+              <XIcon strokeWidth={2} />
+            </button>
+            {showSaveIcon && (
+              <button className="action-btn">
+                <SaveIcon strokeWidth={2} />
+              </button>
+            )}
+            <button className={`action-btn action-btn-heart${!showSaveIcon ? " move-right" : ""}`}>
+              <Heart strokeWidth={2} />
+            </button>
           </div>
         </div>
       </motion.div>

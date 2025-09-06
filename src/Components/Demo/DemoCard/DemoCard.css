@@ -62,6 +62,19 @@ html, body {
   box-shadow: 0 2px 8px rgba(34, 197, 94, 0.6);
 }
 
+.card-label-save {
+  position: absolute;
+  bottom: 25px;
+  top: auto;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: fit-content;
+  background-color: #f6ea3b;
+  box-shadow: 0 2px 8px rgba(246, 234, 59, 0.6);
+}
+
+
 .demo-card img {
   pointer-events: none;    
 }
@@ -189,4 +202,13 @@ html, body {
 .action-btn:hover {
   background: rgba(255, 255, 255, 0.3);
   transform: scale(1.1);
+}
+
+.action-btn-x.move-left {
+  transform: translateX(-60px);
+  transition: transform 0.3s;
+}
+.action-btn-heart.move-right {
+  transform: translateX(60px);
+  transition: transform 0.3s;
 }
