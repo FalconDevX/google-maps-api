@@ -48,3 +48,7 @@ packages/
 # Ignore secrets/configs (appsettings)
 appsettings.json
 appsettings.*.json
+
+# Ignore local debug/test files
+Properties/launchSettings.json
+*.http
