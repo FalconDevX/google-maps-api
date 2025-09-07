@@ -1,4 +1,4 @@
-using WebAPI.Services;
+﻿using WebAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +11,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.MapGet("/", () => "API works");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
