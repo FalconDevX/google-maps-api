@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getPlaceCoordinatesByName")]
-        public async Task<IActionResult> GetPaceCoordinatesByName([FromQuery] string query)
+        public async Task<IActionResult> GetPlaceCoordinatesByName([FromQuery] string query)
         {
             var json = await _mapsService.GetPlaceCoordinatesByNameAsync(query);
 
