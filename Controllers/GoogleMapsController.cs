@@ -47,7 +47,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getNearbyPlacesByName")]
-        public async Task<IActionResult> GetNearbyPlacesByName([FromQuery] string query, [FromQuery] string radius)
+        public async Task<IActionResult> GetNearbyPlacesByName([FromQuery] string query, [FromQuery] int radius)
         {
             var json = await _mapsService.GetNearbyPlacesByCoordinatesAsync(query, radius);
             return Ok(JsonDocument.Parse(json).RootElement.GetProperty("places"));

@@ -58,7 +58,7 @@ namespace WebAPI.Services
 
         }
 
-        public async Task<string> GetNearbyPlacesByCoordinatesAsync(string query, string radius)
+        public async Task<string> GetNearbyPlacesByCoordinatesAsync(string query, int radius)
         {
             var json = await GetPlaceCoordinatesByNameAsync(query);
             using var doc = JsonDocument.Parse(json);
@@ -81,29 +81,35 @@ namespace WebAPI.Services
                     {
                         center = new
                         {
-                            latitude = latitude,
-                            longitude = longitude
+                            latitude,
+                            longitude
                         },
-                        radius = radius
+                        radius = radius   
                     }
                 }
             });
-
 
             using var request = new HttpRequestMessage(
                 HttpMethod.Post,
                 "https://places.googleapis.com/v1/places:searchNearby"
             );
 
-
             request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
             request.Headers.Add("X-Goog-Api-Key", _apiKey);
-            request.Headers.Add("X-Goog-FieldMask", "places.displayName");
+            request.Headers.Add("X-Goog-FieldMask", "places.displayName,places.formattedAddress,places.location,places.rating,places.userRatingCount");
+
 
             var response = await _httpClient.SendAsync(request);
-            response.EnsureSuccessStatusCode();
+            var body = await response.Content.ReadAsStringAsync();
 
-            return await response.Content.ReadAsStringAsync();
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception($"Google API error: {response.StatusCode}, body: {body}");
+            }
+
+            return body;
         }
+
+
     }
 }
