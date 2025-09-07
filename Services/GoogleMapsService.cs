@@ -96,7 +96,7 @@ namespace WebAPI.Services
 
             request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
             request.Headers.Add("X-Goog-Api-Key", _apiKey);
-            request.Headers.Add("X-Goog-FieldMask", "places.displayName,places.formattedAddress,places.location,places.rating,places.userRatingCount");
+            request.Headers.Add("X-Goog-FieldMask", "places.displayName,places.types,places.formattedAddress,places.rating,places.userRatingCount,places.businessStatus,places.regularOpeningHours");
 
 
             var response = await _httpClient.SendAsync(request);
