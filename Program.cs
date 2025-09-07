@@ -22,7 +22,7 @@ var app = builder.Build();
 app.MapGet("/", () => "API works");
 
 app.UseSwagger(c =>
-{   
+{
     c.RouteTemplate = "api/swagger/{documentName}/swagger.json";
 });
 
@@ -30,11 +30,12 @@ app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/api/swagger/v1/swagger.json", "My API V1");
     c.RoutePrefix = "api/swagger";
+    c.EnableDeepLinking();
+    c.DisplayRequestDuration();
 });
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
 app.Run();
