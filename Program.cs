@@ -14,8 +14,8 @@ app.MapGet("/", () => "API works");
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-    c.RoutePrefix = "swagger"; 
+    c.SwaggerEndpoint("/api/swagger/v1/swagger.json", "My API V1");
+    c.RoutePrefix = "api/swagger"; 
 });
 
 app.UseHttpsRedirection();
