@@ -1,0 +1,338 @@
+Category_Polish,Category_English,Place_Type
+Motoryzacja,Automotive,car_dealer
+Motoryzacja,Automotive,car_rental
+Motoryzacja,Automotive,car_repair
+Motoryzacja,Automotive,car_wash
+Motoryzacja,Automotive,electric_vehicle_charging_station
+Motoryzacja,Automotive,gas_station
+Motoryzacja,Automotive,parking
+Motoryzacja,Automotive,rest_stop
+Firma,Business,corporate_office
+Firma,Business,farm
+Firma,Business,ranch
+Kultura,Culture,art_gallery
+Kultura,Culture,art_studio
+Kultura,Culture,auditorium
+Kultura,Culture,cultural_landmark
+Kultura,Culture,historical_place
+Kultura,Culture,monument
+Kultura,Culture,museum
+Kultura,Culture,performing_arts_theater
+Kultura,Culture,sculpture
+Edukacja,Education,library
+Edukacja,Education,preschool
+Edukacja,Education,primary_school
+Edukacja,Education,school
+Edukacja,Education,secondary_school
+Edukacja,Education,university
+Rozrywka i rekreacja,Entertainment and Recreation,adventure_sports_center
+Rozrywka i rekreacja,Entertainment and Recreation,amphitheatre
+Rozrywka i rekreacja,Entertainment and Recreation,amusement_center
+Rozrywka i rekreacja,Entertainment and Recreation,amusement_park
+Rozrywka i rekreacja,Entertainment and Recreation,aquarium
+Rozrywka i rekreacja,Entertainment and Recreation,banquet_hall
+Rozrywka i rekreacja,Entertainment and Recreation,barbecue_area
+Rozrywka i rekreacja,Entertainment and Recreation,botanical_garden
+Rozrywka i rekreacja,Entertainment and Recreation,bowling_alley
+Rozrywka i rekreacja,Entertainment and Recreation,casino
+Rozrywka i rekreacja,Entertainment and Recreation,childrens_camp
+Rozrywka i rekreacja,Entertainment and Recreation,comedy_club
+Rozrywka i rekreacja,Entertainment and Recreation,community_center
+Rozrywka i rekreacja,Entertainment and Recreation,concert_hall
+Rozrywka i rekreacja,Entertainment and Recreation,convention_center
+Rozrywka i rekreacja,Entertainment and Recreation,cultural_center
+Rozrywka i rekreacja,Entertainment and Recreation,cycling_park
+Rozrywka i rekreacja,Entertainment and Recreation,dance_hall
+Rozrywka i rekreacja,Entertainment and Recreation,dog_park
+Rozrywka i rekreacja,Entertainment and Recreation,event_venue
+Rozrywka i rekreacja,Entertainment and Recreation,ferris_wheel
+Rozrywka i rekreacja,Entertainment and Recreation,garden
+Rozrywka i rekreacja,Entertainment and Recreation,hiking_area
+Rozrywka i rekreacja,Entertainment and Recreation,historical_landmark
+Rozrywka i rekreacja,Entertainment and Recreation,internet_cafe
+Rozrywka i rekreacja,Entertainment and Recreation,karaoke
+Rozrywka i rekreacja,Entertainment and Recreation,marina
+Rozrywka i rekreacja,Entertainment and Recreation,movie_rental
+Rozrywka i rekreacja,Entertainment and Recreation,movie_theater
+Rozrywka i rekreacja,Entertainment and Recreation,national_park
+Rozrywka i rekreacja,Entertainment and Recreation,night_club
+Rozrywka i rekreacja,Entertainment and Recreation,observation_deck
+Rozrywka i rekreacja,Entertainment and Recreation,off_roading_area
+Rozrywka i rekreacja,Entertainment and Recreation,opera_house
+Rozrywka i rekreacja,Entertainment and Recreation,park
+Rozrywka i rekreacja,Entertainment and Recreation,philharmonic_hall
+Rozrywka i rekreacja,Entertainment and Recreation,picnic_ground
+Rozrywka i rekreacja,Entertainment and Recreation,planetarium
+Rozrywka i rekreacja,Entertainment and Recreation,plaza
+Rozrywka i rekreacja,Entertainment and Recreation,roller_coaster
+Rozrywka i rekreacja,Entertainment and Recreation,skateboard_park
+Rozrywka i rekreacja,Entertainment and Recreation,state_park
+Rozrywka i rekreacja,Entertainment and Recreation,tourist_attraction
+Rozrywka i rekreacja,Entertainment and Recreation,video_arcade
+Rozrywka i rekreacja,Entertainment and Recreation,visitor_center
+Rozrywka i rekreacja,Entertainment and Recreation,water_park
+Rozrywka i rekreacja,Entertainment and Recreation,wedding_venue
+Rozrywka i rekreacja,Entertainment and Recreation,wildlife_park
+Rozrywka i rekreacja,Entertainment and Recreation,wildlife_refuge
+Rozrywka i rekreacja,Entertainment and Recreation,zoo
+Wyposażenie,Facilities,public_bath
+Wyposażenie,Facilities,public_bathroom
+Wyposażenie,Facilities,stable
+Finanse,Finance,accounting
+Finanse,Finance,atm
+Finanse,Finance,bank
+Żywność i napoje,Food and Drinks,acai_shop
+Żywność i napoje,Food and Drinks,afghani_restaurant
+Żywność i napoje,Food and Drinks,african_restaurant
+Żywność i napoje,Food and Drinks,american_restaurant
+Żywność i napoje,Food and Drinks,asian_restaurant
+Żywność i napoje,Food and Drinks,bagel_shop
+Żywność i napoje,Food and Drinks,bakery
+Żywność i napoje,Food and Drinks,bar
+Żywność i napoje,Food and Drinks,bar_and_grill
+Żywność i napoje,Food and Drinks,barbecue_restaurant
+Żywność i napoje,Food and Drinks,brazilian_restaurant
+Żywność i napoje,Food and Drinks,breakfast_restaurant
+Żywność i napoje,Food and Drinks,brunch_restaurant
+Żywność i napoje,Food and Drinks,buffet_restaurant
+Żywność i napoje,Food and Drinks,cafe
+Żywność i napoje,Food and Drinks,cafeteria
+Żywność i napoje,Food and Drinks,candy_store
+Żywność i napoje,Food and Drinks,cat_cafe
+Żywność i napoje,Food and Drinks,chinese_restaurant
+Żywność i napoje,Food and Drinks,chocolate_factory
+Żywność i napoje,Food and Drinks,chocolate_shop
+Żywność i napoje,Food and Drinks,coffee_shop
+Żywność i napoje,Food and Drinks,confectionery
+Żywność i napoje,Food and Drinks,deli
+Żywność i napoje,Food and Drinks,dessert_restaurant
+Żywność i napoje,Food and Drinks,dessert_shop
+Żywność i napoje,Food and Drinks,diner
+Żywność i napoje,Food and Drinks,dog_cafe
+Żywność i napoje,Food and Drinks,donut_shop
+Żywność i napoje,Food and Drinks,fast_food_restaurant
+Żywność i napoje,Food and Drinks,fine_dining_restaurant
+Żywność i napoje,Food and Drinks,food_court
+Żywność i napoje,Food and Drinks,french_restaurant
+Żywność i napoje,Food and Drinks,greek_restaurant
+Żywność i napoje,Food and Drinks,hamburger_restaurant
+Żywność i napoje,Food and Drinks,ice_cream_shop
+Żywność i napoje,Food and Drinks,indian_restaurant
+Żywność i napoje,Food and Drinks,indonesian_restaurant
+Żywność i napoje,Food and Drinks,italian_restaurant
+Żywność i napoje,Food and Drinks,japanese_restaurant
+Żywność i napoje,Food and Drinks,juice_shop
+Żywność i napoje,Food and Drinks,korean_restaurant
+Żywność i napoje,Food and Drinks,lebanese_restaurant
+Żywność i napoje,Food and Drinks,meal_delivery
+Żywność i napoje,Food and Drinks,meal_takeaway
+Żywność i napoje,Food and Drinks,mediterranean_restaurant
+Żywność i napoje,Food and Drinks,mexican_restaurant
+Żywność i napoje,Food and Drinks,middle_eastern_restaurant
+Żywność i napoje,Food and Drinks,pizza_restaurant
+Żywność i napoje,Food and Drinks,pub
+Żywność i napoje,Food and Drinks,ramen_restaurant
+Żywność i napoje,Food and Drinks,restaurant
+Żywność i napoje,Food and Drinks,sandwich_shop
+Żywność i napoje,Food and Drinks,seafood_restaurant
+Żywność i napoje,Food and Drinks,spanish_restaurant
+Żywność i napoje,Food and Drinks,steak_house
+Żywność i napoje,Food and Drinks,sushi_restaurant
+Żywność i napoje,Food and Drinks,tea_house
+Żywność i napoje,Food and Drinks,thai_restaurant
+Żywność i napoje,Food and Drinks,turkish_restaurant
+Żywność i napoje,Food and Drinks,vegan_restaurant
+Żywność i napoje,Food and Drinks,vegetarian_restaurant
+Żywność i napoje,Food and Drinks,vietnamese_restaurant
+Żywność i napoje,Food and Drinks,wine_bar
+Obszary geograficzne,Geographic Areas,administrative_area_level_1
+Obszary geograficzne,Geographic Areas,administrative_area_level_2
+Obszary geograficzne,Geographic Areas,country
+Obszary geograficzne,Geographic Areas,locality
+Obszary geograficzne,Geographic Areas,postal_code
+Obszary geograficzne,Geographic Areas,school_district
+Administracja publiczna,Public Administration,city_hall
+Administracja publiczna,Public Administration,courthouse
+Administracja publiczna,Public Administration,embassy
+Administracja publiczna,Public Administration,fire_station
+Administracja publiczna,Public Administration,government_office
+Administracja publiczna,Public Administration,local_government_office
+Administracja publiczna,Public Administration,neighborhood_police_station
+Administracja publiczna,Public Administration,police
+Administracja publiczna,Public Administration,post_office
+Zdrowie i dobre samopoczucie,Health and Wellness,chiropractor
+Zdrowie i dobre samopoczucie,Health and Wellness,dental_clinic
+Zdrowie i dobre samopoczucie,Health and Wellness,dentist
+Zdrowie i dobre samopoczucie,Health and Wellness,doctor
+Zdrowie i dobre samopoczucie,Health and Wellness,drugstore
+Zdrowie i dobre samopoczucie,Health and Wellness,hospital
+Zdrowie i dobre samopoczucie,Health and Wellness,massage
+Zdrowie i dobre samopoczucie,Health and Wellness,medical_lab
+Zdrowie i dobre samopoczucie,Health and Wellness,pharmacy
+Zdrowie i dobre samopoczucie,Health and Wellness,physiotherapist
+Zdrowie i dobre samopoczucie,Health and Wellness,sauna
+Zdrowie i dobre samopoczucie,Health and Wellness,skin_care_clinic
+Zdrowie i dobre samopoczucie,Health and Wellness,spa
+Zdrowie i dobre samopoczucie,Health and Wellness,tanning_studio
+Zdrowie i dobre samopoczucie,Health and Wellness,wellness_center
+Zdrowie i dobre samopoczucie,Health and Wellness,yoga_studio
+Nieruchomości,Real Estate,apartment_building
+Nieruchomości,Real Estate,apartment_complex
+Nieruchomości,Real Estate,condominium_complex
+Nieruchomości,Real Estate,housing_complex
+Zakwaterowanie,Accommodation,bed_and_breakfast
+Zakwaterowanie,Accommodation,budget_japanese_inn
+Zakwaterowanie,Accommodation,campground
+Zakwaterowanie,Accommodation,camping_cabin
+Zakwaterowanie,Accommodation,cottage
+Zakwaterowanie,Accommodation,extended_stay_hotel
+Zakwaterowanie,Accommodation,farmstay
+Zakwaterowanie,Accommodation,guest_house
+Zakwaterowanie,Accommodation,hostel
+Zakwaterowanie,Accommodation,hotel
+Zakwaterowanie,Accommodation,inn
+Zakwaterowanie,Accommodation,japanese_inn
+Zakwaterowanie,Accommodation,lodging
+Zakwaterowanie,Accommodation,mobile_home_park
+Zakwaterowanie,Accommodation,motel
+Zakwaterowanie,Accommodation,private_guest_room
+Zakwaterowanie,Accommodation,resort_hotel
+Zakwaterowanie,Accommodation,rv_park
+Obiekty naturalne,Natural Features,beach
+Miejsca kultu,Places of Worship,church
+Miejsca kultu,Places of Worship,hindu_temple
+Miejsca kultu,Places of Worship,mosque
+Miejsca kultu,Places of Worship,synagogue
+Usługi,Services,astrologer
+Usługi,Services,barber_shop
+Usługi,Services,beautician
+Usługi,Services,beauty_salon
+Usługi,Services,body_art_service
+Usługi,Services,catering_service
+Usługi,Services,cemetery
+Usługi,Services,child_care_agency
+Usługi,Services,consultant
+Usługi,Services,courier_service
+Usługi,Services,electrician
+Usługi,Services,florist
+Usługi,Services,food_delivery
+Usługi,Services,foot_care
+Usługi,Services,funeral_home
+Usługi,Services,hair_care
+Usługi,Services,hair_salon
+Usługi,Services,insurance_agency
+Usługi,Services,laundry
+Usługi,Services,lawyer
+Usługi,Services,locksmith
+Usługi,Services,makeup_artist
+Usługi,Services,moving_company
+Usługi,Services,nail_salon
+Usługi,Services,painter
+Usługi,Services,plumber
+Usługi,Services,psychic
+Usługi,Services,real_estate_agency
+Usługi,Services,roofing_contractor
+Usługi,Services,storage
+Usługi,Services,summer_camp_organizer
+Usługi,Services,tailor
+Usługi,Services,telecommunications_service_provider
+Usługi,Services,tour_agency
+Usługi,Services,tourist_information_center
+Usługi,Services,travel_agency
+Usługi,Services,veterinary_care
+Zakupy,Shopping,asian_grocery_store
+Zakupy,Shopping,auto_parts_store
+Zakupy,Shopping,bicycle_store
+Zakupy,Shopping,book_store
+Zakupy,Shopping,butcher_shop
+Zakupy,Shopping,cell_phone_store
+Zakupy,Shopping,clothing_store
+Zakupy,Shopping,convenience_store
+Zakupy,Shopping,department_store
+Zakupy,Shopping,discount_store
+Zakupy,Shopping,electronics_store
+Zakupy,Shopping,food_store
+Zakupy,Shopping,furniture_store
+Zakupy,Shopping,gift_shop
+Zakupy,Shopping,grocery_store
+Zakupy,Shopping,hardware_store
+Zakupy,Shopping,home_goods_store
+Zakupy,Shopping,home_improvement_store
+Zakupy,Shopping,jewelry_store
+Zakupy,Shopping,liquor_store
+Zakupy,Shopping,market
+Zakupy,Shopping,pet_store
+Zakupy,Shopping,shoe_store
+Zakupy,Shopping,shopping_mall
+Zakupy,Shopping,sporting_goods_store
+Zakupy,Shopping,store
+Zakupy,Shopping,supermarket
+Zakupy,Shopping,warehouse_store
+Zakupy,Shopping,wholesaler
+Sport,Sports,arena
+Sport,Sports,athletic_field
+Sport,Sports,fishing_charter
+Sport,Sports,fishing_pond
+Sport,Sports,fitness_center
+Sport,Sports,golf_course
+Sport,Sports,gym
+Sport,Sports,ice_skating_rink
+Sport,Sports,playground
+Sport,Sports,ski_resort
+Sport,Sports,sports_activity_location
+Sport,Sports,sports_club
+Sport,Sports,sports_coaching
+Sport,Sports,sports_complex
+Sport,Sports,stadium
+Sport,Sports,swimming_pool
+Transport,Transportation,airport
+Transport,Transportation,airstrip
+Transport,Transportation,bus_station
+Transport,Transportation,bus_stop
+Transport,Transportation,ferry_terminal
+Transport,Transportation,heliport
+Transport,Transportation,international_airport
+Transport,Transportation,light_rail_station
+Transport,Transportation,park_and_ride
+Transport,Transportation,subway_station
+Transport,Transportation,taxi_stand
+Transport,Transportation,train_station
+Transport,Transportation,transit_depot
+Transport,Transportation,transit_station
+Transport,Transportation,truck_stop
+Dodatkowe typy,Additional Types,administrative_area_level_3
+Dodatkowe typy,Additional Types,administrative_area_level_4
+Dodatkowe typy,Additional Types,administrative_area_level_5
+Dodatkowe typy,Additional Types,administrative_area_level_6
+Dodatkowe typy,Additional Types,administrative_area_level_7
+Dodatkowe typy,Additional Types,archipelago
+Dodatkowe typy,Additional Types,colloquial_area
+Dodatkowe typy,Additional Types,continent
+Dodatkowe typy,Additional Types,establishment
+Dodatkowe typy,Additional Types,finance
+Dodatkowe typy,Additional Types,food
+Dodatkowe typy,Additional Types,general_contractor
+Dodatkowe typy,Additional Types,geocode
+Dodatkowe typy,Additional Types,health
+Dodatkowe typy,Additional Types,intersection
+Dodatkowe typy,Additional Types,landmark
+Dodatkowe typy,Additional Types,natural_feature
+Dodatkowe typy,Additional Types,neighborhood
+Dodatkowe typy,Additional Types,place_of_worship
+Dodatkowe typy,Additional Types,plus_code
+Dodatkowe typy,Additional Types,point_of_interest
+Dodatkowe typy,Additional Types,political
+Dodatkowe typy,Additional Types,postal_code_prefix
+Dodatkowe typy,Additional Types,postal_code_suffix
+Dodatkowe typy,Additional Types,postal_town
+Dodatkowe typy,Additional Types,premise
+Dodatkowe typy,Additional Types,route
+Dodatkowe typy,Additional Types,street_address
+Dodatkowe typy,Additional Types,sublocality
+Dodatkowe typy,Additional Types,sublocality_level_1
+Dodatkowe typy,Additional Types,sublocality_level_2
+Dodatkowe typy,Additional Types,sublocality_level_3
+Dodatkowe typy,Additional Types,sublocality_level_4
+Dodatkowe typy,Additional Types,sublocality_level_5
+Dodatkowe typy,Additional Types,subpremise
+Dodatkowe typy,Additional Types,town_square
