@@ -53,5 +53,13 @@ namespace WebAPI.Controllers
             return Ok(JsonDocument.Parse(json).RootElement.GetProperty("places"));
         }
 
+        [HttpGet("getPlacePhotoByName")]
+        public async Task<IActionResult> GetPlacePhotoByName([FromQuery] string query, [FromQuery] int maxWidth = 400)
+        {
+            var photoBytes = await _mapsService.GetPlacePhotoByNameAsync(query, maxWidth);
+            return File(photoBytes, "image/jpeg");
+        }
+
+
     }
 }

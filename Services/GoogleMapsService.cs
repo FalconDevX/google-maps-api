@@ -110,6 +110,45 @@ namespace WebAPI.Services
             return body;
         }
 
+        public async Task<byte[]> GetPlacePhotoByNameAsync(string query, int maxWidth = 400)
+        {
+            var requestBody = JsonSerializer.Serialize(new { textQuery = query });
+
+            using var request = new HttpRequestMessage(
+                HttpMethod.Post,
+                "https://places.googleapis.com/v1/places:searchText"
+            );
+
+            request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
+            request.Headers.Add("X-Goog-Api-Key", _apiKey);
+            request.Headers.Add("X-Goog-FieldMask", "places.photos");
+
+            var response = await _httpClient.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+
+            var json = await response.Content.ReadAsStringAsync();
+            using var doc = JsonDocument.Parse(json);
+
+            var root = doc.RootElement;
+            if (!root.TryGetProperty("places", out var places) || places.GetArrayLength() == 0)
+                throw new Exception("No places found.");
+
+            var photos = places[0].GetProperty("photos");
+            if (photos.GetArrayLength() == 0)
+                throw new Exception("No photos available.");
+
+            var photoName = photos[0].GetProperty("name").GetString();
+
+            var photoUrl = $"https://places.googleapis.com/v1/{photoName}/media?maxWidthPx={maxWidth}";
+
+            using var photoRequest = new HttpRequestMessage(HttpMethod.Get, photoUrl);
+            photoRequest.Headers.Add("X-Goog-Api-Key", _apiKey);
+
+            var photoResponse = await _httpClient.SendAsync(photoRequest);
+            photoResponse.EnsureSuccessStatusCode();
+
+            return await photoResponse.Content.ReadAsByteArrayAsync();
+        }
 
     }
 }
