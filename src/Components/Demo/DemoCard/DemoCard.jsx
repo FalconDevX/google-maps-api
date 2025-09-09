@@ -8,18 +8,18 @@ const DemoCard = ({ location, country, title, description, tags = [], image }) =
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const likeOpacity = useTransform(x, [0, 100, 140], [0, 0, 1]);
-  const dislikeOpacity = useTransform(x, [0, -100, -140], [0, 0, 1]);
-  const saveOpacity = useTransform(y, [0, 130, 140], [0, 0, 1]);
+  const likeOpacity = useTransform(x, [0, 60, 100], [0, 0, 1]);
+  const dislikeOpacity = useTransform(x, [0, -60, -100], [0, 0, 1]);
+  const saveOpacity = useTransform(y, [0, 60, 100], [0, 0, 1]);
   const [showSaveIcon, setShowSaveIcon] = useState(true);
 
   useMotionValueEvent(y, "change", (latest) => {
-    setShowSaveIcon(latest < 120);
+    setShowSaveIcon(latest < 60);
   });
 
-  const likeScale = useTransform(x, [0, 100, 160], [0.8, 1, 1.3]);
-  const dislikeScale = useTransform(x, [0, -100, -160], [0.8, 1, 1.3]);
-  const saveScale = useTransform(y, [0, 130, 140], [0.8, 1, 1.3]);
+  const likeScale = useTransform(x, [0, 60, 100], [0.8, 1, 1.2]);
+  const dislikeScale = useTransform(x, [0, -60, -100], [0.8, 1, 1.2]);
+  const saveScale = useTransform(y, [0, 60, 100], [0.8, 1, 1.3]);
 
   const rotate = useTransform(x, [-100, 0, 100], [-5, 0, 5]);
 
@@ -30,7 +30,8 @@ const DemoCard = ({ location, country, title, description, tags = [], image }) =
         drag
         dragElastic={0.2}
         dragMomentum={false}
-        dragConstraints={{ left: -100, right: 100, top: -200, bottom: 200 }}
+        dragConstraints={{ left: -30, right: 30, top: -50, bottom: 50 }}
+
         style={{ 
           cursor: "grab", 
           x, 

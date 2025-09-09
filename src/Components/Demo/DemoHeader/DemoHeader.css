@@ -6,9 +6,7 @@
   height: 80px;
   padding: 0 2rem;
   position: relative;
-  background-color: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background-color: #060608;
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: #374151;

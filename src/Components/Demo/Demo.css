@@ -1,13 +1,103 @@
-.demo-page {
-  min-height: 100vh;
-  background: transparent;
-  color: white;
+.demo-page {    
+  min-height: 100vh;    
+  background: transparent;    
+  color: white;  
+}    
+
+.demo-content {    
+  position: relative;
+  min-height: calc(100vh - 80px);    
+  width: 100%;    
+  display: flex;    
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 80px;
+  padding-left: 20px;
+  padding-right: 20px;
+}    
+
+.demo-card-wrapper {    
+  width: 400px;    
+  display: flex;    
+  align-items: center;    
+  justify-content: center;    
+  z-index: 1;
+  transition: transform 0.3s ease;
+}    
+
+.demo-right-section {    
+  position: absolute;
+  top: 80px;
+  left: calc(50% + 200px + 40px);
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  transition: all 0.3s ease;
+}    
+
+.panel-card {    
+  border-width: 1px;    
+  border-color: #414141;    
+  border-style: solid;    
+  background: #161617;    
+  border-radius: 20px;    
+  box-shadow: 0 4px 24px rgba(66, 66, 66, 0.08);    
+  padding: 24px 18px;    
+  display: flex;    
+  flex-direction: column;    
+  align-items: flex-start;    
+  width: 100%;  
 }
 
-.demo-content {
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 80px);
+.panel-card .header-row {    
+  display: flex;    
+  align-items: center;    
+  gap: 6px;    
+  margin-bottom: 8px;  
+}    
+
+.panel-card h2 {    
+  margin: 0;    
+  font-size: 0.9em;    
+  font-weight: 350;    
+  color: #ffffff;  
+}    
+
+.panel-card h4 {    
+  margin: 0;    
+  font-size: 0.8em;    
+  font-weight: 300;    
+  color: #cccccc;  
+}    
+
+@media (max-width: 870px) {    
+  .demo-content {      
+    flex-direction: column;      
+    gap: 40px;      
+    padding-top: 40px;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .demo-card-wrapper {
+    width: 100%;
+    max-width: 400px;
+  }        
+  
+  .demo-right-section {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    max-width: 400px;
+  }  
+}
+
+@media (max-width: 480px) {
+  .demo-content {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }

@@ -7,8 +7,7 @@ html, body {
 }
 
 .demo-card-wrapper {
-  position: relative;
-  width: 100%;
+  width: 400px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -41,7 +40,7 @@ html, body {
   z-index: 10;
   color: white;
   padding: 8px 16px;
-  border-radius: 20px;
+  border-radius: 12px;
   font-weight: bold;
   font-size: 14px;
   text-transform: uppercase;
@@ -58,7 +57,7 @@ html, body {
 
 .card-label-like {
   right: 20px;
-  background-color: #22c55e;
+  background-color: #2cad5b;
   box-shadow: 0 2px 8px rgba(34, 197, 94, 0.6);
 }
 
@@ -70,7 +69,8 @@ html, body {
   right: 0;
   margin: 0 auto;
   width: fit-content;
-  background-color: #f6ea3b;
+  color: rgb(85, 85, 85);
+  background-color: #e6d600;
   box-shadow: 0 2px 8px rgba(246, 234, 59, 0.6);
 }
 

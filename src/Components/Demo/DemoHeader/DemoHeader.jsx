@@ -11,9 +11,8 @@ const DemoHeader = () => {
 
         <img src={logo} alt="Logo" className="demo-logo" onClick={() => navigate('/')}/>
         <nav className="navbar">
-            <a href="#panel" className="navbar-link">Panel</a>
-            <a href="#stats" className="navbar-link">Statystyki</a>
-            <a href="#saved" className="navbar-link">Zapisane</a>
+            <a href="#search" className="navbar-link">Przeglądaj</a>
+            <a href="#dashboard" className="navbar-link">Panel</a>
             <a href="#settings" className="navbar-link">
               <Settings className="navbar-icon" />
               Ustawienia
