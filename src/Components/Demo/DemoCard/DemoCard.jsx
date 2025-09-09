@@ -11,6 +11,7 @@ const DemoCard = ({ location, country, title, description, tags = [], image }) =
   const likeOpacity = useTransform(x, [0, 60, 100], [0, 0, 1]);
   const dislikeOpacity = useTransform(x, [0, -60, -100], [0, 0, 1]);
   const saveOpacity = useTransform(y, [0, 60, 100], [0, 0, 1]);
+  const skipOpacity = useTransform(y, [0, -60, -100], [0, 0, 1]);
   const [showSaveIcon, setShowSaveIcon] = useState(true);
 
   useMotionValueEvent(y, "change", (latest) => {
@@ -20,6 +21,7 @@ const DemoCard = ({ location, country, title, description, tags = [], image }) =
   const likeScale = useTransform(x, [0, 60, 100], [0.8, 1, 1.2]);
   const dislikeScale = useTransform(x, [0, -60, -100], [0.8, 1, 1.2]);
   const saveScale = useTransform(y, [0, 60, 100], [0.8, 1, 1.3]);
+  const skipScale = useTransform(y, [0, -60, -100], [0.8, 1, 1.2]);
 
   const rotate = useTransform(x, [-100, 0, 100], [-5, 0, 5]);
 
@@ -70,6 +72,15 @@ const DemoCard = ({ location, country, title, description, tags = [], image }) =
           }}
         >
           SAVE
+        </motion.div>
+        <motion.div
+          className="card-label card-label-skip"
+          style={{
+            opacity: skipOpacity,
+            scale: skipScale
+          }}
+        >
+          SKIP
         </motion.div>
         <div className="card-image-container">
           <img src={tatryImage} alt={title} className="card-image" />

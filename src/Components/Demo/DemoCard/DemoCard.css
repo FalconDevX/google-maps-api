@@ -74,6 +74,17 @@ html, body {
   box-shadow: 0 2px 8px rgba(246, 234, 59, 0.6);
 }
 
+.card-label-skip{
+  position: absolute;
+  top: 25px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: fit-content;
+  color: rgb(255, 255, 255);
+  background-color: #1a98ff;
+  box-shadow: 0 2px 8px rgba(29, 155, 240, 0.6);
+}
 
 .demo-card img {
   pointer-events: none;    
