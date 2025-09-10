@@ -13,7 +13,7 @@ with open("places.csv", "r", encoding="utf-8") as file:
     for line in reader:
         places.append(line.strip())
 
-for place in places:
+for place in places[:20]:
     params = {
         "query": place,
         "radius": 500
