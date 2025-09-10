@@ -58,7 +58,7 @@ namespace WebAPI.Services
 
         }
 
-        public async Task<string> GetNearbyPlacesByCoordinatesAsync(string query, int radius)
+        public async Task<string> GetNearbyPlacesByCoordinatesAsync(string query, int radius, string rankPreference)
         {
             var json = await GetPlaceCoordinatesByNameAsync(query);
             using var doc = JsonDocument.Parse(json);
@@ -86,7 +86,8 @@ namespace WebAPI.Services
                         },
                         radius = radius   
                     }
-                }
+                },
+                rankPreference
             });
 
             using var request = new HttpRequestMessage(
@@ -96,7 +97,7 @@ namespace WebAPI.Services
 
             request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
             request.Headers.Add("X-Goog-Api-Key", _apiKey);
-            request.Headers.Add("X-Goog-FieldMask", "places.displayName,places.types,places.formattedAddress,places.rating,places.userRatingCount,places.businessStatus");
+            request.Headers.Add("X-Goog-FieldMask", "places.displayName,places.id,places.types,places.formattedAddress,places.rating,places.userRatingCount,places.businessStatus");
 
 
             var response = await _httpClient.SendAsync(request);
@@ -149,6 +150,50 @@ namespace WebAPI.Services
 
             return await photoResponse.Content.ReadAsByteArrayAsync();
         }
+
+        public async Task<string> GetPlacesByNameAsync(string query)
+        {
+            var requestBpdy = JsonSerializer.Serialize(new { textQuery = query });
+
+            using var request = new HttpRequestMessage(
+                HttpMethod.Post,
+                "https://places.googleapis.com/v1/places:searchText"
+            );
+
+            request.Content = new StringContent(requestBpdy, Encoding.UTF8, "application/json");
+            request.Headers.Add("X-Goog-Api-Key", _apiKey);
+            request.Headers.Add("X-Goog-FieldMask", "places.displayName,places.id");
+
+            var response = await _httpClient.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+
+            return await response.Content.ReadAsStringAsync();
+
+        }
+
+        public async Task<string> GetAutocompletePredictionsAsync(string query)
+        {
+            var requestBody = JsonSerializer.Serialize(new
+            {
+                input = query,
+                languageCode = "pl" // opcjonalnie ustaw język
+            });
+
+            using var request = new HttpRequestMessage(
+                HttpMethod.Post,
+                "https://places.googleapis.com/v1/places:autocomplete"
+            );
+
+            request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
+            request.Headers.Add("X-Goog-Api-Key", _apiKey);
+            request.Headers.Add("X-Goog-FieldMask", "suggestions.placePrediction.placeId,suggestions.placePrediction.text");
+
+            var response = await _httpClient.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+
+            return await response.Content.ReadAsStringAsync();
+        }
+
 
     }
 }

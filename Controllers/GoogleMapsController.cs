@@ -47,9 +47,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getNearbyPlacesByName")]
-        public async Task<IActionResult> GetNearbyPlacesByName([FromQuery] string query, [FromQuery] int radius)
+        public async Task<IActionResult> GetNearbyPlacesByName([FromQuery] string query, [FromQuery] int radius, [FromQuery] string rankPreference)
         {
-            var json = await _mapsService.GetNearbyPlacesByCoordinatesAsync(query, radius);
+            var json = await _mapsService.GetNearbyPlacesByCoordinatesAsync(query, radius, rankPreference);
             return Ok(JsonDocument.Parse(json).RootElement.GetProperty("places"));
         }
 
@@ -60,6 +60,19 @@ namespace WebAPI.Controllers
             return File(photoBytes, "image/jpeg");
         }
 
+        [HttpGet("GetPlacesByStringAsync")]
+        public async Task<IActionResult> GetPlacesByName([FromQuery] string query)
+        {
+            var json = await _mapsService.GetPlacesByNameAsync(query);
+            return Ok(JsonDocument.Parse(json).RootElement.GetProperty("places"));
+        }
+
+        [HttpGet("GetAutocompletePredictions")]
+        public async Task<IActionResult> GetAutocompletePredictions([FromQuery] string query)
+        {
+            var json = await _mapsService.GetAutocompletePredictionsAsync(query);
+            return Ok(JsonDocument.Parse(json).RootElement.GetProperty("suggestions"));
+        }
 
     }
 }
