@@ -22,6 +22,18 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+input, textarea, select, button {
+  font-family: inherit;
+  font-size: inherit;
+}
+
 .demo-content {
   background: #121216;
 }
+
+.demo-search {
+  background: #121216;  
+  min-height: 100vh;
+}
+
+

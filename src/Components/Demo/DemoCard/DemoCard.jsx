@@ -2,9 +2,8 @@ import "./DemoCard.css";
 import { motion, useMotionValue, animate, useTransform, useMotionValueEvent } from "framer-motion";
 import { MapPin, Earth, XIcon, SaveIcon, Heart } from "lucide-react";
 import { useState } from "react";
-import tatryImage from "../../../assets/pictures/tatry.jpeg";
 
-const DemoCard = ({ location, country, title, description, tags = [], image }) => {
+const DemoCard = ({ location, country, title, description, tags = [], image, onSwipeUp }) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -41,9 +40,14 @@ const DemoCard = ({ location, country, title, description, tags = [], image }) =
           rotate
         }}
         whileTap={{ cursor: "grabbing" }}
-        onDragEnd={() => {
-          animate(x, 0, { type: "spring", stiffness: 300, damping: 20 });
-          animate(y, 0, { type: "spring", stiffness: 300, damping: 20 });
+        onDragEnd={(event, info) => {
+          const offsetY = info.offset.y;
+          const offsetX = info.offset.x;
+          if (offsetY < -180 || offsetY > 190 || offsetX > 200 || offsetX < -200) {
+            onSwipeUp();
+          }
+            animate(x, 0, { type: "spring", stiffness: 300, damping: 20 });
+            animate(y, 0, { type: "spring", stiffness: 300, damping: 20 });
         }}
       >
         <motion.div
@@ -83,7 +87,7 @@ const DemoCard = ({ location, country, title, description, tags = [], image }) =
           SKIP
         </motion.div>
         <div className="card-image-container">
-          <img src={tatryImage} alt={title} className="card-image" />
+          <img src={image} alt={title} className="card-image" />
           <div className="location-tag">
             <span className="earth-icon"><Earth /></span>
             <span>{location} • {country}</span>

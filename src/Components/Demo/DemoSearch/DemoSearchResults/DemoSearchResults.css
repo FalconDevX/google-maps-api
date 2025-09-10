@@ -1,0 +1,20 @@
+.demo-search-results {
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 8px #777777;
+    border-radius: 14px;
+    margin-top: 1rem;
+    overflow: hidden;
+}
+
+.result-item{
+    padding: 10px 20px;
+}
+
+.result-item:hover,
+.result-item.active {
+  background-color: #e4e4e4;
+  cursor: pointer;
+}
