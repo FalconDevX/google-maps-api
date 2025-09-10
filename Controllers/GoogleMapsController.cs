@@ -67,11 +67,17 @@ namespace WebAPI.Controllers
             return Ok(JsonDocument.Parse(json).RootElement.GetProperty("places"));
         }
 
-        [HttpGet("GetAutocompletePredictions")]
+        [HttpGet("getAutocompletePredictions")]
         public async Task<IActionResult> GetAutocompletePredictions([FromQuery] string query)
         {
             var json = await _mapsService.GetAutocompletePredictionsAsync(query);
-            return Ok(JsonDocument.Parse(json).RootElement.GetProperty("suggestions"));
+            var jsonDoc = JsonDocument.Parse(json);
+
+            if (jsonDoc.RootElement.TryGetProperty("suggestions", out var suggestions) && suggestions.GetArrayLength() > 0)
+            {
+                return Ok(suggestions);
+            }
+            return Ok(new object[0]);
         }
 
     }

@@ -7,6 +7,18 @@ builder.Services.AddHttpClient<GoogleMapsService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
+//CORS for local development with frontend
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173") 
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
@@ -33,6 +45,8 @@ app.UseSwaggerUI(c =>
     c.EnableDeepLinking();
     c.DisplayRequestDuration();
 });
+
+app.UseCors("AllowFrontend");
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
