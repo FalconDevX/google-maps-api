@@ -39,6 +39,11 @@
 
 .navbar-link:hover {
   color: #fff;
+  cursor: pointer;
+}
+
+.navbar-link.active {
+  color: #fff;
 }
 
 .navbar-icon {

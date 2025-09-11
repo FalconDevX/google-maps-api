@@ -1,25 +1,41 @@
 import { Search } from 'lucide-react'
 import "./DemoSearchBar.css"    
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 const DemoSearchBar = ({ results, setResults, activeIndex, setActiveIndex }) => {
     const [input, setInput] = useState("");
+    const abortController = useRef(null);
 
     const fetchData = (query) => {
         if (!query || query.trim() === "") {
-            
             setResults([]);
+            if (abortController.current) {
+                abortController.current.abort();
+            }
             return;
         }
 
+        if (abortController.current) {
+            abortController.current.abort();
+        }
+
+        abortController.current = new AbortController();
+
         const url = `http://34.56.66.163/api/GoogleMaps/getAutocompletePredictions?query=${encodeURIComponent(query)}`;
-        fetch(url)
+        fetch(url, { signal: abortController.current.signal })
             .then(response => response.json())
             .then(data => {
+                if (!query || query.trim() === "") {
+                    setResults([]);
+                    return;
+                }
                 const results = data.map(item => item.placePrediction.text.text);
                 setResults(results);
             })
-            .catch(err => console.error("Błąd połączenia:", err));
+            .catch(err => {
+                if (err.name === "AbortError") return; 
+                console.error("Błąd połączenia:", err);
+            });
     };
 
     const handleSearch = (query) => {
@@ -56,7 +72,12 @@ const DemoSearchBar = ({ results, setResults, activeIndex, setActiveIndex }) => 
     return (
         <div className="demo-search-bar">
             <Search className="demo-search-icon" />
-            <input placeholder='Type to search place...' value={input} onChange={(e) => handleSearch(e.target.value)}  onKeyDown={handleKeyDown}/>
+            <input 
+                placeholder='Type to search place...' 
+                value={input} 
+                onChange={(e) => handleSearch(e.target.value)}  
+                onKeyDown={handleKeyDown}
+            />
         </div>
     )
 }
