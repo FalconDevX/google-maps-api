@@ -12,7 +12,7 @@ const DemoSearchBar = ({ results, setResults, activeIndex, setActiveIndex }) => 
             return;
         }
 
-        const url = `https://localhost:63286/api/GoogleMaps/getAutocompletePredictions?query=${encodeURIComponent(query)}`;
+        const url = `http://34.56.66.163/api/GoogleMaps/getAutocompletePredictions?query=${encodeURIComponent(query)}`;
         fetch(url)
             .then(response => response.json())
             .then(data => {
