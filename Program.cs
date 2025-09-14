@@ -1,4 +1,5 @@
-﻿using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using WebAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpClient<GoogleMapsService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<UserDb>(options =>
+options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 43))));
 
 //CORS for local development with frontend
 builder.Services.AddCors(options =>

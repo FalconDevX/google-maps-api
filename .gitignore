@@ -1,54 +1,33 @@
-﻿# Build results
-bin/
-obj/
-Debug/
-Release/
-x64/
-x86/
-[Bb]uild/
-[Ll]ogs/
-
-# Visual Studio
-.vs/
-*.user
+[Dd]ebug/
+[Rr]elease/
 *.suo
-*.userosscache
-*.sln.docstates
-
-# Temp files
-*.tmp
-*.temp
-*.log
-*.bak
-*.ncb
-*.opendb
-*.VC.db
-*.vscode/
-
-# Publish output
-publish/
-out/
-
-# Database
-*.dbmdl
-*.bak
-*.mdf
-*.ldf
-
-# NuGet
+*.user
+*.pdb
+*.pidb
+*.vsp
+*.ege
 *.nupkg
-*.snupkg
-packages/
-.nuget/
+*.user
+*.bak
+*.cache
+*.scc
 
-# Rider / JetBrains
+[Bb]in/
+[Oo]bj/
+*.log
+*.tmp
+*.zip
+*.tar
+*.gz
+
+appsettings.Development.json
+MapBackend.http
+
+*.db
+*.sqlite
+
 .idea/
-*.iml
+.vs/
 
-# Ignore secrets/configs (appsettings)
-appsettings.json
-appsettings.*.json
-
-# Ignore local debug/test files
-Properties/launchSettings.json
-*.http
+.git/
+.gitignore
