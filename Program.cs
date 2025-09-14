@@ -1,3 +1,4 @@
+using MapBackend.Endpoints;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using WebAPI.Services;
@@ -56,4 +57,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapUserEndpoints();
 app.Run();
