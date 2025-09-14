@@ -39,8 +39,20 @@ const Demo = () => {
   ];
 
   const [currentReelIndex, setCurrentReelIndex] = useState(0);
+  const [savedPlaces, setSavedPlaces] = useState([]);
+
+  const handleSavePlace = (place) => {
+    if (!savedPlaces.some((p) => p.title === place.title)) {
+      setSavedPlaces([...savedPlaces, place]);
+    }
+  };
 
   const onSwipeUp = () => {
+    setCurrentReelIndex((prevIndex) => (prevIndex + 1) % places.length);
+  };
+
+  const onSwipeDown = () => {
+    handleSavePlace(places[currentReelIndex]);
     setCurrentReelIndex((prevIndex) => (prevIndex + 1) % places.length);
   };
 
@@ -56,15 +68,32 @@ const Demo = () => {
           tags={places[currentReelIndex].tags}
           image={places[currentReelIndex].image}
           onSwipeUp={onSwipeUp}
+          onSwipeDown={onSwipeDown}
         />
 
         <div className="demo-right-section">
           <div className="panel-card">
             <div className="header-row">
               <BookMarkedIcon size={18} strokeWidth={1.2} />
-              <h2>Zapisane lokalizacje</h2>
+              <h2>Zapisane miejsca</h2>            
+              
             </div>
-            <h4>Na razie pusto. Przeciągnij kartę w dół, aby zapisać.</h4>
+          
+            {savedPlaces.length === 0 ? (
+              <h4>Na razie pusto. Przeciągnij kartę w dół, aby zapisać.</h4>
+              ) : (
+                <ul className="demo-saved-places-list">
+                  {savedPlaces.map((place, index) => (
+                    <div className="demo-saved-place" key={index}>
+                      <div className="saved-image-wrapper">
+                        <img src={place.image} alt={place.title} />
+                        <span className="saved-title">{place.title}</span>
+                      </div>
+                    </div>
+                  ))}
+                </ul>
+              )}
+
           </div>
 
           <div className="panel-card">

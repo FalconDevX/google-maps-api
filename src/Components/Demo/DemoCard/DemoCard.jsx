@@ -3,7 +3,7 @@ import { motion, useMotionValue, animate, useTransform, useMotionValueEvent } fr
 import { MapPin, Earth, XIcon, SaveIcon, Heart } from "lucide-react";
 import { useState } from "react";
 
-const DemoCard = ({ location, country, title, description, tags = [], image, onSwipeUp }) => {
+const DemoCard = ({ location, country, title, description, tags = [], image, onSwipeUp, onSwipeDown }) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -43,12 +43,25 @@ const DemoCard = ({ location, country, title, description, tags = [], image, onS
         onDragEnd={(event, info) => {
           const offsetY = info.offset.y;
           const offsetX = info.offset.x;
+
           if (offsetY < -180 || offsetY > 190 || offsetX > 200 || offsetX < -200) {
             onSwipeUp();
-          }
             animate(x, 0, { type: "spring", stiffness: 300, damping: 20 });
             animate(y, 0, { type: "spring", stiffness: 300, damping: 20 });
+          }
+
+          if (offsetY > 190) {
+            onSwipeDown();
+            animate(x, 0, { type: "spring", stiffness: 300, damping: 20 });
+            animate(y, 0, { type: "spring", stiffness: 300, damping: 20 });
+          }
+
+          if (offsetY > 180) {
+            animate(x, 0, { type: "spring", stiffness: 300, damping: 20 });
+            animate(y, 0, { type: "spring", stiffness: 300, damping: 20 });
+          }
         }}
+
       >
         <motion.div
           className="card-label card-label-dislike"
