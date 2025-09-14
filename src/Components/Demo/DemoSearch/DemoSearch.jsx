@@ -56,6 +56,7 @@ const DemoSearch = () => {
                             setResults={setResults} 
                             activeIndex={activeIndex} 
                             setActiveIndex={setActiveIndex} 
+                            onSave={handleSaveLocation}
                         />
                         <DemoSearchResults 
                             results={results} 

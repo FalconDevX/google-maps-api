@@ -2,7 +2,7 @@ import { Search } from 'lucide-react'
 import "./DemoSearchBar.css"    
 import { useState, useRef } from 'react'
 
-const DemoSearchBar = ({ results, setResults, activeIndex, setActiveIndex }) => {
+const DemoSearchBar = ({ results, setResults, activeIndex, setActiveIndex, onSave }) => {
     const [input, setInput] = useState("");
     const abortController = useRef(null);
 
@@ -60,9 +60,16 @@ const DemoSearchBar = ({ results, setResults, activeIndex, setActiveIndex }) => 
             });
         } else if (e.key === "Enter" && activeIndex >= 0) {
             e.preventDefault();
-            setInput(results[activeIndex]);
+            const selected = results[activeIndex];
+            setInput("");
             setResults([]);
-            setActiveIndex(-1); 
+            setActiveIndex(-1);
+
+            if (onSave)
+            {
+                onSave(selected);
+            }
+
         } else if (e.key === "Escape") {
             setResults([]);
             setActiveIndex(-1);
