@@ -8,7 +8,7 @@ namespace MapBackend.Endpoints
     {
         public static RouteGroupBuilder MapUserEndpoints(this WebApplication app)
         {
-            var group = app.MapGroup("users");
+            var group = app.MapGroup("/api/users");
 
             group.MapGet("/", async (UserDb db) => await db.Users.ToListAsync());
 
