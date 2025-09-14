@@ -1,33 +1,54 @@
-[Dd]ebug/
-[Rr]elease/
-*.suo
-*.user
-*.pdb
-*.pidb
-*.vsp
-*.ege
-*.nupkg
-*.user
-*.bak
-*.cache
-*.scc
+# Build results
+bin/
+obj/
+Debug/
+Release/
+x64/
+x86/
+[Bb]uild/
+[Ll]ogs/
 
-[Bb]in/
-[Oo]bj/
-*.log
-*.tmp
-*.zip
-*.tar
-*.gz
-
-appsettings.Development.json
-MapBackend.http
-
-*.db
-*.sqlite
-
-.idea/
+# Visual Studio
 .vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
 
-.git/
-.gitignore
+# Temp files
+*.tmp
+*.temp
+*.log
+*.bak
+*.ncb
+*.opendb
+*.VC.db
+*.vscode/
+
+# Publish output
+publish/
+out/
+
+# Database
+*.dbmdl
+*.bak
+*.mdf
+*.ldf
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+
+# Rider / JetBrains
+.idea/
+*.iml
+
+# Ignore secrets/configs (appsettings)
+appsettings.json
+appsettings.*.json
+
+# Ignore local debug/test files
+Properties/launchSettings.json
+*.http
