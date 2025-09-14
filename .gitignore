@@ -52,3 +52,7 @@ appsettings.*.json
 # Ignore local debug/test files
 Properties/launchSettings.json
 *.http
+
+WebAPI.sln
+WebAPI.csproj
+WebAPI.http
