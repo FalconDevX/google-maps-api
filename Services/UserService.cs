@@ -1,8 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using BCrypt.Net;
 
 namespace WebAPI.Services
 {
@@ -52,12 +49,14 @@ namespace WebAPI.Services
 
         public async Task<UserDto> CreateUserAsync(UserDto userDto)
         {
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(userDto.PasswordHash);
             var userEntity = new User
             {
                 Username = userDto.Username,
                 Email = userDto.Email,
-                PasswordHash = userDto.PasswordHash,
-                CreatedAt = DateOnly.FromDateTime(DateTime.UtcNow)
+                PasswordHash = hashedPassword,
+                CreatedAt = DateOnly.FromDateTime(DateTime.UtcNow),
+                UpdatedAt = DateOnly.FromDateTime(DateTime.UtcNow)
             };
 
             _db.Users.Add(userEntity);
@@ -65,6 +64,7 @@ namespace WebAPI.Services
 
             userDto.Id = userEntity.Id;
             userDto.CreatedAt = userEntity.CreatedAt;
+            userDto.PasswordHash = null; 
             return userDto;
         }
 
@@ -78,7 +78,10 @@ namespace WebAPI.Services
 
             user.Username = inputUser.Username;
             user.Email = inputUser.Email;
-            user.PasswordHash = inputUser.PasswordHash;
+            if (!string.IsNullOrEmpty(inputUser.PasswordHash))
+            {
+                user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(inputUser.PasswordHash);
+            }
             user.UpdatedAt = DateOnly.FromDateTime(DateTime.UtcNow);
 
             await _db.SaveChangesAsync();
