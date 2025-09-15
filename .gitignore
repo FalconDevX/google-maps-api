@@ -53,6 +53,6 @@ appsettings.*.json
 Properties/launchSettings.json
 *.http
 
-WebAPI.sln
-WebAPI.csproj
+# WebAPI.sln
+# WebAPI.csproj
 WebAPI.http
