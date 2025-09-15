@@ -13,15 +13,15 @@ public class UsersController : ControllerBase
         _userService = userService;
     }
 
-    [HttpGet(Name = "GetAllUsers")]
-    public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers()
+    [HttpGet("getAllUsers")]
+    public async Task<ActionResult<IEnumerable<UserDto>>> GetAllUsers()
     {
         var users = await _userService.GetAllUsersAsync();
         return Ok(users);
     }
 
-    [HttpGet("{id}", Name = "GetUserById")]
-    public async Task<ActionResult<UserDto>> GetUser(int id)    
+    [HttpGet("getUserById/{id}")]
+    public async Task<ActionResult<UserDto>> GetUserById(int id)
     {
         var user = await _userService.GetUserByIdAsync(id);
         if (user is null)
@@ -31,14 +31,14 @@ public class UsersController : ControllerBase
         return Ok(user);
     }
 
-    [HttpPost(Name = "CreateUser")]
+    [HttpPost("createUser")]
     public async Task<ActionResult<UserDto>> CreateUser(UserDto user)
     {
         var createdUser = await _userService.CreateUserAsync(user);
-        return CreatedAtAction(nameof(GetUser), new { id = createdUser.Id }, createdUser);
+        return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id }, createdUser);
     }
 
-    [HttpPut("{id}", Name = "UpdateUser")]
+    [HttpPut("updateUser/{id}")]
     public async Task<IActionResult> UpdateUser(int id, UserDto inputUser)
     {
         var success = await _userService.UpdateUserAsync(id, inputUser);
@@ -49,7 +49,7 @@ public class UsersController : ControllerBase
         return NoContent();
     }
 
-    [HttpDelete("{id}", Name = "DeleteUser")]
+    [HttpDelete("deleteUser/{id}")]
     public async Task<IActionResult> DeleteUser(int id)
     {
         var success = await _userService.DeleteUserAsync(id);
@@ -60,5 +60,3 @@ public class UsersController : ControllerBase
         return NoContent();
     }
 }
-
-
