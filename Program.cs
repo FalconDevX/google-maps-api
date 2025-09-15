@@ -1,4 +1,3 @@
-using MapBackend.Endpoints;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using WebAPI.Services;
@@ -6,6 +5,7 @@ using WebAPI.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpClient<GoogleMapsService>();
+builder.Services.AddScoped<UserService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -57,5 +57,4 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-app.MapUserEndpoints();
 app.Run();
