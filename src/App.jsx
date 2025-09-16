@@ -3,17 +3,16 @@ import WelcomeScreenMain from "./Components/WelcomeScreen/WelcomeScreenMain/Welc
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Demo from "./Components/Demo/Demo";
 import DemoSearch from "./Components/Demo/DemoSearch/DemoSearch";
-import RegistrationMain from "./Components/Registration/RegistrationMain/RegistrationMain";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path="/" element={<WelcomeScreenMain />} />
+          {/* wszystkie ścieżki login/register obsługiwane wewnątrz WelcomeScreenMain */}
+          <Route path="/*" element={<WelcomeScreenMain />} />
           <Route path="/demo" element={<Demo />} />
           <Route path="/search" element={<DemoSearch />} />
-          <Route path="/registration" element={<RegistrationMain />} />
         </Routes>
       </div>
     </BrowserRouter>

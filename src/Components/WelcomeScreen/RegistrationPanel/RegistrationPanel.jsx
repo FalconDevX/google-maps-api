@@ -50,7 +50,9 @@ const RegistrationPanel = () => {
         
         <div className="login-link">
           <span className="login-text">Masz już konto? </span>
-          <a href="#" className="login-link-text" onClick={() => navigate('/')}>Zaloguj się</a>
+          <a className="login-text-link" onClick={() => navigate("/")}>
+            Zaloguj się
+          </a>
         </div>
       </div>
     </div>

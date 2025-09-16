@@ -109,3 +109,15 @@
 .login-link-text:hover {
   text-decoration: underline;
 }
+
+.login-text-link {
+  color: #7fcc20;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.login-text-link:hover {
+  color: #65a517;
+}

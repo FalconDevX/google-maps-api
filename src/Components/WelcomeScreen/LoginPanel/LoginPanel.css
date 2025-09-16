@@ -177,13 +177,14 @@
   font-size: 0.9rem;
 }
 
-.register-link-text {
-  color: #10b981;
+.register-text-link {
+  color: #7fcc20;
+  cursor: pointer;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
 }
 
-.register-link-text:hover {
-  text-decoration: underline;
+.register-text-link:hover {
+  color: #65a517;
 }
