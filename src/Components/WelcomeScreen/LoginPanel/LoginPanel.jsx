@@ -3,8 +3,10 @@ import "./LoginPanel.css";
 import googleIcon from "../../../assets/social-icons/google-icon.webp";
 import facebookIcon from "../../../assets/social-icons/facebook-icon.webp";
 import githubIcon from "../../../assets/social-icons/github-icon.png";
+import { useNavigate } from "react-router-dom"
 
 const LoginPanel = () => {
+  const navigate = useNavigate();
   return (
     <div className="login-panel">
       <div className="login-card">
@@ -56,7 +58,7 @@ const LoginPanel = () => {
         
         <div className="register-link">
           <span className="register-text">Nie masz konta? </span>
-          <a href="#" className="register-link-text">Zarejestruj się</a>
+          <a href="#" className="register-link-text" onClick={() => navigate('/registration')}>Zarejestruj się</a>
         </div>
       </div>
     </div>
