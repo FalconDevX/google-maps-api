@@ -59,4 +59,22 @@ public class UsersController : ControllerBase
         }
         return NoContent();
     }
+
+    [HttpPost("login")]
+    public async Task<ActionResult<UserDto>> Login([FromBody] LoginRequestDto loginDto)
+    {
+        if (string.IsNullOrWhiteSpace(loginDto.Email) || string.IsNullOrWhiteSpace(loginDto.Password))
+        {
+            return BadRequest("Email and password are required.");
+        }
+
+        var user = await _userService.AuthenticateAsync(loginDto.Email, loginDto.Password);
+
+        if(user == null)
+        {
+            return Unauthorized("Invalid email or password.");
+        }
+
+        return Ok(user);
+    }
 }

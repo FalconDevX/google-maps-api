@@ -7,3 +7,10 @@ public class UserDto
     public DateOnly CreatedAt { get; set; }
     public DateOnly UpdatedAt { get; set; }
 }
+
+public class LoginRequestDto
+{
+    public string? Email { get; set; }
+    public string? Password { get; set; }
+}
+

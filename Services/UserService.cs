@@ -100,5 +100,23 @@ namespace WebAPI.Services
             await _db.SaveChangesAsync();
             return true;
         }
+
+        public async Task<UserDto?> AuthenticateAsync(string email, string password)
+        {
+            var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == email);
+
+            if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
+            {
+                return null;
+            }
+
+            return new UserDto
+            {
+                Id = user.Id,
+                Email = user.Email,
+                Username = user.Username
+            };
+
+        }
     }
 }
