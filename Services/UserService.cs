@@ -101,7 +101,7 @@ namespace WebAPI.Services
             return true;
         }
 
-        public async Task<UserDto?> AuthenticateAsync(string email, string password)
+        public async Task<UserDto?> LoginAsync(string email, string password)
         {
             var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == email);
 
@@ -117,6 +117,16 @@ namespace WebAPI.Services
                 Username = user.Username
             };
 
+        }
+
+        public async Task<UserDto?> RegisterAsync(string username, string email, string password)
+        {
+            return await CreateUserAsync(new UserDto
+            {
+                Username = username,
+                Email = email,
+                PasswordHash = password
+            });
         }
     }
 }

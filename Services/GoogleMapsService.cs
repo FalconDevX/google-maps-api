@@ -176,7 +176,7 @@ namespace WebAPI.Services
             var requestBody = JsonSerializer.Serialize(new
             {
                 input = query,
-                languageCode = "pl" // opcjonalnie ustaw język
+                languageCode = "pl"
             });
 
             using var request = new HttpRequestMessage(

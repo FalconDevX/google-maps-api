@@ -68,7 +68,7 @@ public class UsersController : ControllerBase
             return BadRequest("Email and password are required.");
         }
 
-        var user = await _userService.AuthenticateAsync(loginDto.Email, loginDto.Password);
+        var user = await _userService.LoginAsync(loginDto.Email, loginDto.Password);
 
         if(user == null)
         {
@@ -77,4 +77,24 @@ public class UsersController : ControllerBase
 
         return Ok(user);
     }
+
+    [HttpPost("register")]
+
+    public async Task<ActionResult<UserDto>> Register([FromBody] RegisterRequestDto registerDto)
+    {
+        if (string.IsNullOrWhiteSpace(registerDto.Username) || string.IsNullOrWhiteSpace(registerDto.Email) || string.IsNullOrWhiteSpace(registerDto.Password))
+        {
+            return BadRequest("Username, email, and password are required.");
+        }
+
+        var user = await _userService.RegisterAsync(registerDto.Username, registerDto.Email, registerDto.Password);
+
+        if (user == null)
+        {
+            return Conflict("Email is already in use.");
+        }
+
+        return Ok(user);
+    }
+    
 }
