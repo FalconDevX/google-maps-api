@@ -7,6 +7,31 @@ import { useNavigate } from "react-router-dom"
 
 const LoginPanel = () => {
   const navigate = useNavigate();
+
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
+  const handleLogin = async () => {
+    try {
+      const response = await fetch("http://34.56.66.163/api/Users/login", {
+        method: "POST",
+        headers: {"Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Login successful:", data);
+      } else {
+        const errorText = await response.text();
+        console.error("Login failed:", response.status, errorText);
+      }
+
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  }
+
   return (
     <div className="login-panel">
       <div className="login-card">
@@ -41,6 +66,8 @@ const LoginPanel = () => {
               type="email" 
               className="form-input" 
               placeholder="np. anna@calm.dev"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           
@@ -50,12 +77,16 @@ const LoginPanel = () => {
               type="password" 
               className="form-input" 
               placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
         </div>
-        
-        <button className="login-btn">Zaloguj się</button>
-        
+
+        <button className="login-btn" onClick={handleLogin}>
+          Zaloguj się
+        </button>
+
         <div className="register-link">
           <span className="register-text">Nie masz konta? </span>
           <a className="register-text-link" onClick={() => navigate("/register")}>
