@@ -1,19 +1,27 @@
 using WebAPI.Services;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 [ApiController]
 [Route("api/[controller]")]
 public class UsersController : ControllerBase
 {
     private readonly UserService _userService;
+    private readonly TokenService _tokenService;
 
-    public UsersController(UserService userService)
+    public UsersController(UserService userService, TokenService tokenService)
     {
         _userService = userService;
+        _tokenService = tokenService;
     }
 
     [HttpGet("getAllUsers")]
+    [Authorize]
     public async Task<ActionResult<IEnumerable<UserDto>>> GetAllUsers()
     {
         var users = await _userService.GetAllUsersAsync();
@@ -75,11 +83,19 @@ public class UsersController : ControllerBase
             return Unauthorized("Invalid email or password.");
         }
 
-        return Ok(user);
+        var token = _tokenService.GenerateTokens(user);
+
+    return Ok(new
+    {
+        user.Id,
+        user.Username,
+        user.Email,
+        token
+    });
+
     }
 
     [HttpPost("register")]
-
     public async Task<ActionResult<UserDto>> Register([FromBody] RegisterRequestDto registerDto)
     {
         if (string.IsNullOrWhiteSpace(registerDto.Username) || string.IsNullOrWhiteSpace(registerDto.Email) || string.IsNullOrWhiteSpace(registerDto.Password))

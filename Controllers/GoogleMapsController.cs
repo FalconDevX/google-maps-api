@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using System.Threading.Tasks;
 using WebAPI.Services;
@@ -7,6 +8,7 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class GoogleMapsController : ControllerBase
     {
         private readonly GoogleMapsService _mapsService;
@@ -39,7 +41,7 @@ namespace WebAPI.Controllers
 
             var location = places[0].GetProperty("location");
 
-            return Ok(new 
+            return Ok(new
             {
                 latitude = location.GetProperty("latitude").GetDouble(),
                 longitude = location.GetProperty("longitude").GetDouble()

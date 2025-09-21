@@ -6,10 +6,12 @@ namespace WebAPI.Services
     public class UserService
     {
         private readonly UserDb _db;
+        private readonly TokenService _tokenService;
 
-        public UserService(UserDb db)
+        public UserService(UserDb db, TokenService tokenService)
         {
             _db = db;
+            _tokenService = tokenService;
         }
 
         public async Task<IEnumerable<UserDto>> GetAllUsersAsync()
@@ -105,18 +107,30 @@ namespace WebAPI.Services
         {
             var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == email);
 
-            if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
+            if (user == null || string.IsNullOrEmpty(user.PasswordHash) || 
+            !BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
             {
                 return null;
             }
+
+            var (accessToken, refreshToken) = _tokenService.GenerateTokens(user);
+            var refreshTokenEntity = new UserRefreshToken
+                {
+                    UserId = user.Id,
+                    RefreshToken = refreshToken,
+                    ExpiryDate = DateTime.UtcNow.AddMinutes(15),
+                    CreatedAt = DateTime.UtcNow,
+                    IsRevoked = false
+                };
+            await _tokenService.SaveRefreshTokenAsync(refreshTokenEntity);
 
             return new UserDto
             {
                 Id = user.Id,
                 Email = user.Email,
-                Username = user.Username
+                Username = user.Username,
+                PasswordHash = user.PasswordHash
             };
-
         }
 
         public async Task<UserDto?> RegisterAsync(string username, string email, string password)
