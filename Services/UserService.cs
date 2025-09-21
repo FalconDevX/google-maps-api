@@ -7,11 +7,13 @@ namespace WebAPI.Services
     {
         private readonly UserDb _db;
         private readonly TokenService _tokenService;
+        private readonly GoogleStorage _googleStorage;
 
-        public UserService(UserDb db, TokenService tokenService)
+        public UserService(UserDb db, TokenService tokenService, GoogleStorage googleStorage)
         {
             _db = db;
             _tokenService = tokenService;
+            _googleStorage = googleStorage;
         }
 
         public async Task<IEnumerable<UserDto>> GetAllUsersAsync()
@@ -64,9 +66,12 @@ namespace WebAPI.Services
             _db.Users.Add(userEntity);
             await _db.SaveChangesAsync();
 
+            await _googleStorage.CreateUserFolderAsync(userEntity.Id, userEntity.Username);
+
             userDto.Id = userEntity.Id;
             userDto.CreatedAt = userEntity.CreatedAt;
-            userDto.PasswordHash = null; 
+            userDto.PasswordHash = string.Empty; 
+
             return userDto;
         }
 

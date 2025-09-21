@@ -49,6 +49,9 @@ packages/
 appsettings.json
 appsettings.*.json
 
+# Google Cloud Storage credentials
+enduring-stage-471111-v7-9ca609b8d5da.json
+
 # Ignore local debug/test files
 Properties/launchSettings.json
 *.http

@@ -12,7 +12,10 @@ public class TokenService
     public TokenService(IConfiguration configuration, UserDb db)
     {
         _db = db;
-        _secret = Encoding.UTF8.GetBytes(configuration["JwtSettings:Key"]);
+        var key = configuration["JwtSettings:Key"];
+        if (string.IsNullOrEmpty(key))
+            throw new ArgumentException("JWT secret key is missing in configuration.", nameof(configuration));
+        _secret = Encoding.UTF8.GetBytes(key);
     }
 
     public (string AccessToken, string RefreshToken) GenerateTokens(UserDto user)
@@ -68,9 +71,9 @@ public class TokenService
         return (accessToken, refreshToken);
     }
      public async Task SaveRefreshTokenAsync(UserRefreshToken userRefreshToken)
-    {
+     {
         _db.UserRefreshTokens.Add(userRefreshToken);
         await _db.SaveChangesAsync();
-    }
+     }
     
 }

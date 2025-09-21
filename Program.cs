@@ -15,11 +15,9 @@ builder.Services.AddEndpointsApiExplorer();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<UserDb>(options =>
 options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 43))));
-
-builder.Services.Configure<RefreshTokenDto>(
-    builder.Configuration.GetSection("JwtSettings"));
-
+builder.Services.Configure<RefreshTokenDto>(builder.Configuration.GetSection("JwtSettings"));
 builder.Services.AddScoped<TokenService>();
+builder.Services.AddSingleton<GoogleStorage>();
 
 var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<RefreshTokenDto>();
 var key = Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Key"]?? throw new ArgumentNullException("Key not find"));
