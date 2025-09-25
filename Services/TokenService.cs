@@ -48,7 +48,6 @@ public class TokenService
             Id = user.Id,
             Username = user.Username,
             Email = user.Email,
-            PasswordHash = user.PasswordHash,
             CreatedAt = user.CreatedAt,
             UpdatedAt = user.UpdatedAt
         };

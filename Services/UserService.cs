@@ -24,7 +24,6 @@ namespace WebAPI.Services
                     Id = user.Id,
                     Username = user.Username,
                     Email = user.Email,
-                    PasswordHash = user.PasswordHash,
                     CreatedAt = user.CreatedAt,
                     UpdatedAt = user.UpdatedAt
                 })
@@ -50,19 +49,19 @@ namespace WebAPI.Services
                 Id = user.Id,
                 Username = user.Username,
                 Email = user.Email,
-                PasswordHash = user.PasswordHash,
+
                 CreatedAt = user.CreatedAt,
                 UpdatedAt = user.UpdatedAt
             };
         }
 
-        public async Task<UserDto> CreateUserAsync(UserDto userDto)
+        public async Task<UserDto> CreateUserAsync(RegisterRequestDto dto)
         {
-            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(userDto.PasswordHash);
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(dto.Password);
             var userEntity = new User
             {
-                Username = userDto.Username,
-                Email = userDto.Email,
+                Username = dto.Username,
+                Email = dto.Email,
                 PasswordHash = hashedPassword,
                 CreatedAt = DateOnly.FromDateTime(DateTime.UtcNow),
                 UpdatedAt = DateOnly.FromDateTime(DateTime.UtcNow)
@@ -73,14 +72,17 @@ namespace WebAPI.Services
 
             await _googleStorage.CreateUserFolderAsync(userEntity.Id, userEntity.Username);
 
-            userDto.Id = userEntity.Id;
-            userDto.CreatedAt = userEntity.CreatedAt;
-            userDto.PasswordHash = string.Empty; 
-
-            return userDto;
+            return new UserDto
+            {
+                Id = userEntity.Id,
+                Username = userEntity.Username,
+                Email = userEntity.Email,
+                CreatedAt = userEntity.CreatedAt,
+                UpdatedAt = userEntity.UpdatedAt
+            };
         }
 
-        public async Task<bool> UpdateUserAsync(int id, UserDto inputUser)
+        public async Task<bool> UpdateUserAsync(int id, UpdateRequestDto dto)
         {
             var user = await _db.Users.FindAsync(id);
             if (user is null)
@@ -88,17 +90,20 @@ namespace WebAPI.Services
                 return false;
             }
 
-            user.Username = inputUser.Username;
-            user.Email = inputUser.Email;
-            if (!string.IsNullOrEmpty(inputUser.PasswordHash))
+            user.Username = dto.Username;
+            user.Email = dto.Email;
+
+            if (!string.IsNullOrEmpty(dto.Password))
             {
-                user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(inputUser.PasswordHash);
+                user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password);
             }
+
             user.UpdatedAt = DateOnly.FromDateTime(DateTime.UtcNow);
 
             await _db.SaveChangesAsync();
             return true;
         }
+
 
         public async Task<bool> DeleteUserAsync(int id)
         {

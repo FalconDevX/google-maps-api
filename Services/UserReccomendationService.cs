@@ -17,6 +17,11 @@ namespace WebAPI.Services
             };
 
             using var process = Process.Start(psi);
+            if (process == null)
+            {
+                throw new Exception("Failed to start the Python process.");
+            }
+
             string result = process.StandardOutput.ReadToEnd();
             string errors = process.StandardError.ReadToEnd();
             process.WaitForExit();

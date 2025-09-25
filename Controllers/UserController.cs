@@ -40,22 +40,30 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost("createUser")]
-    public async Task<ActionResult<UserDto>> CreateUser(UserDto user)
+    public async Task<ActionResult<UserDto>> CreateUser(RegisterRequestDto request)
     {
-        var createdUser = await _userService.CreateUserAsync(user);
-        return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id }, createdUser);
+        var createdUser = await _userService.CreateUserAsync(request);
+
+        return CreatedAtAction(
+            nameof(GetUserById),
+            new { id = createdUser.Id },
+            createdUser
+        );
     }
 
     [HttpPut("updateUser/{id}")]
-    public async Task<IActionResult> UpdateUser(int id, UserDto inputUser)
+    public async Task<IActionResult> UpdateUser(int id, UpdateRequestDto request)
     {
-        var success = await _userService.UpdateUserAsync(id, inputUser);
+        var success = await _userService.UpdateUserAsync(id, request);
+
         if (!success)
         {
             return NotFound();
         }
+
         return NoContent();
     }
+
 
     [HttpDelete("deleteUser/{id}")]
     public async Task<IActionResult> DeleteUser(int id)
