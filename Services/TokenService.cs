@@ -1,8 +1,9 @@
-using JWT.Builder;
 using JWT.Algorithms;
-using System.Text;
-using System.Security.Cryptography;
+using JWT.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System.Security.Cryptography;
+using System.Text;
 
 public class TokenService
 {
@@ -70,10 +71,45 @@ public class TokenService
 
         return (accessToken, refreshToken);
     }
-     public async Task SaveRefreshTokenAsync(UserRefreshToken userRefreshToken)
+    public async Task SaveRefreshTokenAsync(UserRefreshToken userRefreshToken)
      {
         _db.UserRefreshTokens.Add(userRefreshToken);
         await _db.SaveChangesAsync();
      }
-    
+
+    public async Task<(string AccessToken, string RefreshToken)?> RefreshTokensAsync(string refreshToken)
+    {
+        var storedToken = await _db.UserRefreshTokens
+            .FirstOrDefaultAsync(t => t.RefreshToken == refreshToken);
+
+        if (storedToken == null || storedToken.IsRevoked || storedToken.ExpiryDate < DateTime.UtcNow)
+        {
+            return null;
+        }
+
+        var user = await _db.Users.FindAsync(storedToken.UserId);
+        if (user == null)
+        {
+            return null; 
+        }
+
+        storedToken.IsRevoked = true;
+
+        var (newAccessToken, newRefreshToken) = GenerateTokens(user);
+
+        var newRefreshTokenEntity = new UserRefreshToken
+        {
+            UserId = user.Id,
+            RefreshToken = newRefreshToken,
+            ExpiryDate = DateTime.UtcNow.AddDays(7),
+            CreatedAt = DateTime.UtcNow,
+            IsRevoked = false
+        };
+
+        _db.UserRefreshTokens.Add(newRefreshTokenEntity);
+        await _db.SaveChangesAsync();
+
+        return (newAccessToken, newRefreshToken);
+    }
+
 }

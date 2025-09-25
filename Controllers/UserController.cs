@@ -69,7 +69,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost("login")]
-    public async Task<ActionResult<UserDto>> Login([FromBody] LoginRequestDto loginDto)
+    public async Task<ActionResult<LoginResponseDto>> Login([FromBody] LoginRequestDto loginDto)
     {
         if (string.IsNullOrWhiteSpace(loginDto.Email) || string.IsNullOrWhiteSpace(loginDto.Password))
         {
@@ -78,22 +78,14 @@ public class UsersController : ControllerBase
 
         var user = await _userService.LoginAsync(loginDto.Email, loginDto.Password);
 
-        if(user == null)
+        if (user == null)
         {
             return Unauthorized("Invalid email or password.");
         }
 
-        var token = _tokenService.GenerateTokens(user);
-
-    return Ok(new
-    {
-        user.Id,
-        user.Username,
-        user.Email,
-        token
-    });
-
+        return Ok(user); 
     }
+
 
     [HttpPost("register")]
     public async Task<ActionResult<UserDto>> Register([FromBody] RegisterRequestDto registerDto)

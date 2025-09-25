@@ -35,6 +35,11 @@ namespace WebAPI.Services
         {
             var user = await _db.Users.FindAsync(id);
 
+            var service = new UserRecommendationService();
+            string output = service.FetchPlaces();
+            Console.WriteLine(output);
+
+
             if (user is null)
             {
                 return null;
@@ -108,44 +113,78 @@ namespace WebAPI.Services
             return true;
         }
 
-        public async Task<UserDto?> LoginAsync(string email, string password)
+        public async Task<LoginResponseDto?> LoginAsync(string email, string password)
         {
             var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == email);
 
-            if (user == null || string.IsNullOrEmpty(user.PasswordHash) || 
-            !BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
+            if (user == null || string.IsNullOrEmpty(user.PasswordHash) ||
+                !BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
             {
                 return null;
             }
 
             var (accessToken, refreshToken) = _tokenService.GenerateTokens(user);
+
             var refreshTokenEntity = new UserRefreshToken
-                {
-                    UserId = user.Id,
-                    RefreshToken = refreshToken,
-                    ExpiryDate = DateTime.UtcNow.AddMinutes(15),
-                    CreatedAt = DateTime.UtcNow,
-                    IsRevoked = false
-                };
+            {
+                UserId = user.Id,
+                RefreshToken = refreshToken,
+                ExpiryDate = DateTime.UtcNow.AddDays(7), // refresh token np. 7 dni
+                CreatedAt = DateTime.UtcNow,
+                IsRevoked = false
+            };
+
             await _tokenService.SaveRefreshTokenAsync(refreshTokenEntity);
 
-            return new UserDto
+            return new LoginResponseDto
             {
                 Id = user.Id,
                 Email = user.Email,
                 Username = user.Username,
-                PasswordHash = user.PasswordHash
+                AccessToken = accessToken,
+                RefreshToken = refreshToken
             };
         }
 
-        public async Task<UserDto?> RegisterAsync(string username, string email, string password)
+
+        public async Task<LoginResponseDto?> RegisterAsync(string username, string email, string password)
         {
-            return await CreateUserAsync(new UserDto
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
+
+            var user = new User
             {
                 Username = username,
                 Email = email,
-                PasswordHash = password
-            });
+                PasswordHash = hashedPassword,
+                CreatedAt = DateOnly.FromDateTime(DateTime.UtcNow),
+                UpdatedAt = DateOnly.FromDateTime(DateTime.UtcNow)
+            };
+
+            _db.Users.Add(user);
+            await _db.SaveChangesAsync();
+
+            var (accessToken, refreshToken) = _tokenService.GenerateTokens(user);
+
+            var refreshTokenEntity = new UserRefreshToken
+            {
+                UserId = user.Id,
+                RefreshToken = refreshToken,
+                ExpiryDate = DateTime.UtcNow.AddDays(7),
+                CreatedAt = DateTime.UtcNow,
+                IsRevoked = false
+            };
+
+            await _tokenService.SaveRefreshTokenAsync(refreshTokenEntity);
+
+            return new LoginResponseDto
+            {
+                Id = user.Id,
+                Email = user.Email,
+                Username = user.Username,
+                AccessToken = accessToken,
+                RefreshToken = refreshToken
+            };
         }
+
     }
 }
