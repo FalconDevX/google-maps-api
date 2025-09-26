@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using BCrypt.Net;
+using WebAPI.DTOs;
 
 namespace WebAPI.Services
 {

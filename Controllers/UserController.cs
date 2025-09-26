@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using WebAPI.DTOs;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -36,7 +37,7 @@ public class UsersController : ControllerBase
         {
             return NotFound();
         }
-        return Ok(user);
+        return user;
     }
 
     [HttpPost("createUser")]
@@ -86,17 +87,17 @@ public class UsersController : ControllerBase
 
         var user = await _userService.LoginAsync(loginDto.Email, loginDto.Password);
 
-        if (user == null)
+        if (user is null)
         {
             return Unauthorized("Invalid email or password.");
         }
 
-        return Ok(user); 
+        return user; 
     }
 
 
     [HttpPost("register")]
-    public async Task<ActionResult<UserDto>> Register([FromBody] RegisterRequestDto registerDto)
+    public async Task<ActionResult<LoginResponseDto>> Register([FromBody] RegisterRequestDto registerDto)
     {
         if (string.IsNullOrWhiteSpace(registerDto.Username) || string.IsNullOrWhiteSpace(registerDto.Email) || string.IsNullOrWhiteSpace(registerDto.Password))
         {
@@ -105,12 +106,12 @@ public class UsersController : ControllerBase
 
         var user = await _userService.RegisterAsync(registerDto.Username, registerDto.Email, registerDto.Password);
 
-        if (user == null)
+        if (user is null)
         {
             return Conflict("Email is already in use.");
         }
 
-        return Ok(user);
+        return user;
     }
     
 }

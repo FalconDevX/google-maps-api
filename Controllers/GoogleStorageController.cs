@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WebAPI.Services;
+using WebAPI.DTOs;
 
 namespace WebAPI.Controllers
 {
@@ -14,23 +15,20 @@ namespace WebAPI.Controllers
         {
             _googleStorage = googleStorage;
         }
-
-        [HttpPost("{userId}/{username}/places/{placeName}")]
-        public async Task<IActionResult> AddPlace(int userId, string username, string placeName)
+        [HttpPost]
+        public async Task<IActionResult> AddPlace([FromBody] AddUserPlace dto)
         {
-            if (string.IsNullOrWhiteSpace(placeName))
-            {
+            if (string.IsNullOrWhiteSpace(dto.PlaceName))
                 return BadRequest("PlaceName is required");
-            }
 
-            await _googleStorage.AddUserPlaceToListFile(userId, username, placeName);
+            await _googleStorage.AddUserPlaceToListFile(dto.UserId, dto.Username, dto.PlaceName);
 
             return Ok(new
             {
-                userId,
-                username,
-                addedPlace = placeName,
-                message = $"Dodano miejsce '{placeName}' do użytkownika {username}"
+                dto.UserId,
+                dto.Username,
+                addedPlace = dto.PlaceName,
+                message = $"Dodano miejsce '{dto.PlaceName}' do użytkownika {dto.Username}"
             });
         }
     }
