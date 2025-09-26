@@ -50,12 +50,12 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowFrontend",
         policy =>
         {
-            policy.AllowAnyOrigin()
-              .AllowAnyHeader()
-              .AllowAnyMethod();
-
+            policy.WithOrigins("http://localhost:5173", "http://34.56.66.163")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
         });
 });
+
 
 
 builder.Services.AddSwaggerGen(c =>
@@ -110,9 +110,6 @@ app.UseSwaggerUI(c =>
     c.DisplayRequestDuration();
 });
 
-
-
-app.UseHttpsRedirection();
 app.UseRouting();
 
 app.UseCors("AllowFrontend");  
