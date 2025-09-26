@@ -108,9 +108,12 @@ app.UseSwaggerUI(c =>
     c.DisplayRequestDuration();
 });
 
-app.UseCors("AllowFrontend");
+
 
 app.UseHttpsRedirection();
+app.UseRouting();
+
+app.UseCors("AllowFrontend");
 app.UseAuthentication();
 app.UseAuthorization();
 
