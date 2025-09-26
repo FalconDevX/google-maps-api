@@ -6,8 +6,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using WebAPI.DTOs;
 
-var builder = WebApplication.CreateBuilder(args);
 
+var builder = WebApplication.CreateBuilder(args);
+builder.Logging.AddDebug();
 builder.Services.AddHttpClient<GoogleMapsService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<TokenService>();

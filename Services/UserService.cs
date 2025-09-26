@@ -155,6 +155,13 @@ namespace WebAPI.Services
 
         public async Task<LoginResponseDto?> RegisterAsync(string username, string email, string password)
         {
+            var existingUser = await _db.Users.FirstOrDefaultAsync(u => u.Email == email || u.Username == username);
+
+            if (existingUser != null)
+            {
+                throw new ArgumentException("User with this email or username already exists");
+            }
+
             var hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
 
             var user = new User
@@ -168,6 +175,8 @@ namespace WebAPI.Services
 
             _db.Users.Add(user);
             await _db.SaveChangesAsync();
+
+            await _googleStorage.CreateUserFolderAsync(user.Id, user.Username);
 
             var (accessToken, refreshToken) = _tokenService.GenerateTokens(user);
 
