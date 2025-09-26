@@ -1,5 +1,8 @@
-﻿public class LoginRequestDto
+﻿namespace WebAPI.DTOs
 {
-    public required string Email { get; set; }
-    public required string Password { get; set; }
+    public class LoginRequestDto
+    {
+        public required string Email { get; set; }
+        public required string Password { get; set; }
+    }
 }
