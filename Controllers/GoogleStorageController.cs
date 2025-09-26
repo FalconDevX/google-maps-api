@@ -15,13 +15,13 @@ namespace WebAPI.Controllers
         {
             _googleStorage = googleStorage;
         }
-        [HttpPost]
-        public async Task<IActionResult> AddPlace([FromBody] AddUserPlace dto)
+        [HttpPost("addNewPlace")]
+        public async Task<IActionResult> AddUserPlace([FromBody] AddUserPlace dto)
         {
             if (string.IsNullOrWhiteSpace(dto.PlaceName))
                 return BadRequest("PlaceName is required");
 
-            await _googleStorage.AddUserPlaceToListFile(dto.UserId, dto.Username, dto.PlaceName);
+            await _googleStorage.AddUserPlaceToListFileAsync(dto.UserId, dto.Username, dto.PlaceName);
 
             return Ok(new
             {
@@ -29,6 +29,42 @@ namespace WebAPI.Controllers
                 dto.Username,
                 addedPlace = dto.PlaceName,
                 message = $"Dodano miejsce '{dto.PlaceName}' do użytkownika {dto.Username}"
+            });
+        }
+
+        [HttpGet("getPlaces")]
+        public async Task<IActionResult> GetUserPlaces([FromQuery] int userId, [FromQuery] string username)
+        {
+            var content = await _googleStorage.GetUserPlacesFromFileAsync(userId, username);
+
+            if (content == null || content.Count == 0)
+            {
+                return NotFound($"Brak miejsc dla użytkownika {username}");
+            }
+
+            return Ok(new
+            {
+                UserId = userId,
+                Username = username,
+                Places = content
+            });
+        }
+
+        [HttpDelete("deletePlace")]
+        public async Task<IActionResult> DeleteUserPlace([FromQuery] int userId, [FromQuery] string username, [FromQuery] string placeName)
+        {
+            var success = await _googleStorage.DeleteUserPlaceFromFileAsync(userId, username, placeName);
+
+            if (!success)
+            {
+                return NotFound($"Miejsce '{placeName}' nie znalezione dla użytkownika {username}");
+            }
+            return Ok(new
+            {
+                UserId = userId,
+                Username = username,
+                deletedPlace = placeName,
+                message = $"Usunięto miejsce '{placeName}' dla użytkownika {username}"
             });
         }
     }

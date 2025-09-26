@@ -1,8 +1,11 @@
 ﻿using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Storage.V1;
-using System.IO;
-using System.Text;
 using Microsoft.Extensions.Logging;
+using System.IO;
+using System.Numerics;
+using System.Text;
+using System.Text.Encodings.Web;
+using System.Text.Json;
 
 namespace WebAPI.Services
 {
@@ -28,16 +31,6 @@ namespace WebAPI.Services
             _logger = logger;
         }
 
-        public async Task UploadEmptyObjectAsync(string folderPath)
-        {
-            using var stream = new MemoryStream(new byte[0]);
-            _logger.LogInformation("Uploading empty object: {FolderPath}", folderPath);
-
-            await _storageClient.UploadObjectAsync(_bucketName, folderPath, "application/x-www-form-urlencoded", stream);
-
-            _logger.LogInformation("Uploaded empty object: {FolderPath}", folderPath);
-        }
-
         public async Task CreateUserFolderAsync(int userId, string username)
         {
             var objectName = $"{userId}_{username}/";
@@ -48,7 +41,7 @@ namespace WebAPI.Services
             try
             {
                 await _storageClient.UploadObjectAsync(_bucketName, objectName, null, stream);
-                await CreateUserPlacesCsvAsync(userId, username);
+                await CreateUserPlacesJsonAsync(userId, username);
 
                 _logger.LogInformation("[GoogleStorage] Folder created successfully: {ObjectName}", objectName);
             }
@@ -59,7 +52,7 @@ namespace WebAPI.Services
             }
         }
 
-        public async Task CreateUserPlacesCsvAsync(int userId, string username)
+        public async Task CreateUserPlacesJsonAsync(int userId, string username)
         {
             var objectName = $"{userId}_{username}/places.json";
             using var stream = new MemoryStream(new byte[0]);
@@ -71,12 +64,10 @@ namespace WebAPI.Services
             _logger.LogInformation("[GoogleStorage] Created empty places.json for {UserId} - {Username}", userId, username);
         }
 
-        public async Task AddUserPlaceToListFile(int userId, string username, string placeName)
+        public async Task AddUserPlaceToListFileAsync(int userId, string username, string placeName)
         {
             var objectName = $"{userId}_{username}/places.json";
-            string csvContent;
-
-            _logger.LogInformation("[GoogleStorage] Adding place '{PlaceName}' to {ObjectName}", placeName, objectName);
+            List<string> places;
 
             try
             {
@@ -85,22 +76,87 @@ namespace WebAPI.Services
                 memoryStream.Position = 0;
 
                 using var reader = new StreamReader(memoryStream);
-                csvContent = await reader.ReadToEndAsync();
-
-                _logger.LogInformation("[GoogleStorage] Downloaded existing places.json for {UserId} - {Username}", userId, username);
+                var json = await reader.ReadToEndAsync();
+                places = JsonSerializer.Deserialize<List<string>>(json) ?? new List<string>();
             }
             catch (Google.GoogleApiException ex) when (ex.Error.Code == 404)
             {
-                _logger.LogWarning("[GoogleStorage] places.json not found for {UserId} - {Username}, creating new one", userId, username);
-                csvContent = "";
+                places = new List<string>();
             }
 
-            var lines = csvContent.Split('\n', StringSplitOptions.RemoveEmptyEntries);
-            var nextId = lines.Length + 1;
+            if (places.Contains(placeName))
+            {
+                _logger.LogInformation("[GoogleStorage] Place '{PlaceName}' already exists in {ObjectName}", placeName, objectName);
+                return;
+            }
 
-            csvContent += $"{nextId},{placeName}\n";
+            places.Add(placeName);
 
-            var bytes = Encoding.UTF8.GetBytes(csvContent);
+            var newJson = JsonSerializer.Serialize(places, new JsonSerializerOptions { WriteIndented = true });
+            var bytes = Encoding.UTF8.GetBytes(newJson);
+
+            using var uploadStream = new MemoryStream(bytes);
+            await _storageClient.UploadObjectAsync(
+                _bucketName,
+                objectName,
+                "application/json",
+                uploadStream
+            );
+        }
+
+        public async Task<List<string>> GetUserPlacesFromFileAsync(int userId, string username)
+        {
+            var objectName = $"{userId}_{username}/places.json";
+
+            try
+            {
+                using var memoryStream = new MemoryStream();
+                await _storageClient.DownloadObjectAsync(_bucketName, objectName, memoryStream);
+                memoryStream.Position = 0;
+
+                using var reader = new StreamReader(memoryStream);
+                var json = await reader.ReadToEndAsync();
+
+                return JsonSerializer.Deserialize<List<string>>(json) ?? new List<string>();
+            }
+            catch (Google.GoogleApiException ex) when (ex.Error.Code == 404)
+            {
+                return new List<string>();
+            }
+        }
+
+        public async Task<bool> DeleteUserPlaceFromFileAsync(int userId, string username, string placeName)
+        {
+            var objectName = $"{userId}_{username}/places.json";
+            List<string> places;
+
+            try
+            {
+                using var memoryStream = new MemoryStream();
+                await _storageClient.DownloadObjectAsync(_bucketName, objectName, memoryStream);
+                memoryStream.Position = 0;
+
+                using var reader = new StreamReader(memoryStream);
+                var json = await reader.ReadToEndAsync();
+                places = JsonSerializer.Deserialize<List<string>>(json) ?? new List<string>();
+            }
+            catch (Google.GoogleApiException ex) when (ex.Error.Code == 404)
+            {
+                _logger.LogWarning("[GoogleStorage] places.json not found for {UserId} - {Username}", userId, username);
+                return false;
+            }
+
+            var removedPlace = places.Remove(placeName);
+
+            if(!removedPlace)
+            {
+                _logger.LogInformation("[GoogleStorage] Place '{PlaceName}' not found in {ObjectName}", placeName, objectName);
+                return false;
+            }
+
+            var newJson = JsonSerializer.Serialize(places);
+            var bytes = Encoding.UTF8.GetBytes(newJson);
+
             using var uploadStream = new MemoryStream(bytes);
 
             await _storageClient.UploadObjectAsync(
@@ -110,7 +166,8 @@ namespace WebAPI.Services
                 uploadStream
             );
 
-            _logger.LogInformation("[GoogleStorage] Updated places.json for {UserId} - {Username} with new place {PlaceName}", userId, username, placeName);
+            return true;
         }
+
     }
 }
