@@ -10,7 +10,7 @@
         "formattedAddress": "Rynek Główny, 31-422 Kraków, Poland",
         "rating": 4.8,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 179055,
+        "userRatingCount": 179057,
         "displayName": {
             "text": "Rynek Główny",
             "languageCode": "en"
@@ -72,10 +72,10 @@
         "id": "ChIJjUf7MRBbFkcRg9Ls9752tqU",
         "types": [
             "museum",
-            "tourist_attraction",
-            "monument",
             "historical_landmark",
+            "monument",
             "historical_place",
+            "tourist_attraction",
             "point_of_interest",
             "establishment"
         ],
@@ -109,8 +109,8 @@
         "id": "ChIJ39HZXuVbFkcRFRXjXZ4YujE",
         "types": [
             "restaurant",
-            "food",
             "point_of_interest",
+            "food",
             "establishment"
         ],
         "formattedAddress": "plac Szczepański 8, 31-011 Kraków, Poland",
@@ -126,8 +126,8 @@
         "id": "ChIJK-sdYBJbFkcRef3k7_ZqTwc",
         "types": [
             "restaurant",
-            "food",
             "point_of_interest",
+            "food",
             "establishment"
         ],
         "formattedAddress": "Grodzka 26, 31-044 Kraków, Poland",
@@ -145,8 +145,8 @@
             "restaurant",
             "pub",
             "bar",
-            "food",
             "point_of_interest",
+            "food",
             "establishment"
         ],
         "formattedAddress": "Szpitalna 22, 31-024 Kraków, Poland",
@@ -197,9 +197,9 @@
             "supermarket",
             "grocery_store",
             "food_store",
-            "food",
             "point_of_interest",
             "store",
+            "food",
             "establishment"
         ],
         "formattedAddress": "Rynek Główny 34, 31-010 Kraków, Poland",
@@ -231,11 +231,11 @@
     {
         "id": "ChIJXawaRxBbFkcRx-yOIyoSLO8",
         "types": [
-            "diner",
             "brunch_restaurant",
+            "diner",
             "restaurant",
-            "food",
             "point_of_interest",
+            "food",
             "establishment"
         ],
         "formattedAddress": "Szpitalna 40, 31-024 Kraków, Poland",
@@ -251,8 +251,8 @@
         "id": "ChIJb8Fl3RJbFkcR7o7LsEoK9nk",
         "types": [
             "cafe",
-            "food",
             "point_of_interest",
+            "food",
             "establishment"
         ],
         "formattedAddress": "Grodzka 50/1, 31-044 Kraków, Poland",
@@ -268,8 +268,8 @@
         "id": "ChIJ_5RXIxBbFkcRrjeOC8iGuuA",
         "types": [
             "restaurant",
-            "food",
             "point_of_interest",
+            "food",
             "establishment"
         ],
         "formattedAddress": "Szewska 2, 31-009 Kraków, Poland",
@@ -286,8 +286,8 @@
         "types": [
             "post_office",
             "finance",
-            "point_of_interest",
             "government_office",
+            "point_of_interest",
             "establishment"
         ],
         "formattedAddress": "Westerplatte 20, 31-045 Kraków, Poland",
@@ -305,12 +305,12 @@
             "hotel",
             "convention_center",
             "night_club",
-            "lodging",
-            "event_venue",
             "bar",
+            "event_venue",
+            "lodging",
             "restaurant",
-            "food",
             "point_of_interest",
+            "food",
             "establishment"
         ],
         "formattedAddress": "Wielopole 4, 31-072 Kraków, Poland",
@@ -327,8 +327,8 @@
         "types": [
             "breakfast_restaurant",
             "restaurant",
-            "food",
             "point_of_interest",
+            "food",
             "establishment"
         ],
         "formattedAddress": "Św. Tomasza 24, 33-332 Kraków, Poland",
@@ -344,8 +344,8 @@
         "id": "ChIJ1Uph_BJbFkcRUpnptYJza-o",
         "types": [
             "restaurant",
-            "food",
             "point_of_interest",
+            "food",
             "establishment"
         ],
         "formattedAddress": "Poselska 22, 31-002 Kraków, Poland",
@@ -481,8 +481,8 @@
             "bar",
             "event_venue",
             "restaurant",
-            "point_of_interest",
             "food",
+            "point_of_interest",
             "establishment"
         ],
         "formattedAddress": "plac Mariacki 1/4, 31-042 Kraków, Poland",
@@ -526,11 +526,11 @@
         "id": "ChIJwVeK5BNbFkcRh7xs7cCiOPg",
         "types": [
             "italian_restaurant",
-            "pizza_restaurant",
             "seafood_restaurant",
+            "pizza_restaurant",
             "restaurant",
-            "point_of_interest",
             "food",
+            "point_of_interest",
             "establishment"
         ],
         "formattedAddress": "plac Mariacki 8, 31-041 Kraków, Poland",
@@ -612,8 +612,8 @@
         "types": [
             "american_restaurant",
             "restaurant",
-            "point_of_interest",
             "food",
+            "point_of_interest",
             "establishment"
         ],
         "formattedAddress": "Mariacki Square 9, 31-042 Kraków, Poland",
@@ -629,16 +629,16 @@
         "id": "ChIJeXDu7RFbFkcR6Te36bLuG8Q",
         "types": [
             "italian_restaurant",
-            "pizza_restaurant",
             "wine_bar",
             "seafood_restaurant",
             "mediterranean_restaurant",
+            "pizza_restaurant",
             "bar",
-            "food_store",
             "restaurant",
+            "food_store",
+            "food",
             "point_of_interest",
             "store",
-            "food",
             "establishment"
         ],
         "formattedAddress": "plac Mariacki 2, 31-042 Kraków, Poland",
@@ -663,6 +663,958 @@
         "displayName": {
             "text": "Iluzjonista Łukasz Kupiniak",
             "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJb6BDtg5bFkcRWMFyNOKFVlY",
+        "types": [
+            "performing_arts_theater",
+            "event_venue",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Karmelicka 6, 31-128 Kraków, Poland",
+        "rating": 4.7,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 7871,
+        "displayName": {
+            "text": "Bagatela Theatre",
+            "languageCode": "en"
+        }
+    },
+    {
+        "id": "ChIJpXNtPg1bFkcR770s5OVqBuY",
+        "types": [
+            "hotel",
+            "bar",
+            "fitness_center",
+            "gym",
+            "sports_activity_location",
+            "lodging",
+            "restaurant",
+            "point_of_interest",
+            "health",
+            "food",
+            "establishment"
+        ],
+        "formattedAddress": "Floriana Straszewskiego 17, 31-101 Kraków, Poland",
+        "rating": 4.5,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 3530,
+        "displayName": {
+            "text": "Radisson Blu Hotel, Krakow",
+            "languageCode": "en"
+        }
+    },
+    {
+        "id": "ChIJ_x5OFAxbFkcR-I31JD-mzuc",
+        "types": [
+            "restaurant",
+            "breakfast_restaurant",
+            "cafe",
+            "point_of_interest",
+            "food",
+            "establishment"
+        ],
+        "formattedAddress": "Floriana Straszewskiego 28, 31-113 Kraków, Poland",
+        "rating": 4.6,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 8789,
+        "displayName": {
+            "text": "Restauracja Smakołyki",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJ9QIypWdbFkcRmtYUSbeylQ4",
+        "types": [
+            "electrician",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Rynek Główny, 31-010 Kraków, Poland",
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+            "text": "Solar Service Team Sp z o.o.",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJfb6TOA5bFkcRa33np_lwdmU",
+        "types": [
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "31-042 Kraków, Poland",
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+            "text": "DJ Wesele Kraków Paweł Sendor",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJHTzU5A1bFkcRZFuyJ6xAgRk",
+        "types": [
+            "point_of_interest",
+            "store",
+            "establishment"
+        ],
+        "formattedAddress": "Sukiennice 15, 31-042 Kraków, Poland",
+        "rating": 5,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 1,
+        "displayName": {
+            "text": "Art-Kram s.c.",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJk5N7Bw5bFkcRR_uwBqGzlt8",
+        "types": [
+            "point_of_interest",
+            "store",
+            "establishment"
+        ],
+        "formattedAddress": "Rynek Główny 3, 33-332 Kraków, Poland",
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+            "text": "Englert Artur. Wyroby jubilerskie",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJa8Lu4A1bFkcRKfdg-TmGXvs",
+        "types": [
+            "point_of_interest",
+            "store",
+            "establishment"
+        ],
+        "formattedAddress": "Rynek Główny 3, 31-042 Kraków, Poland",
+        "rating": 1,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 1,
+        "displayName": {
+            "text": "Wyżga T.A. Wyroby artystyczne",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJC0_u4A1bFkcREbWE6w8asNI",
+        "types": [
+            "jewelry_store",
+            "point_of_interest",
+            "store",
+            "establishment"
+        ],
+        "formattedAddress": "Rynek Główny 3, 31-042 Kraków, Poland",
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+            "text": "Handel biżuterią",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJk5N7Bw5bFkcRxsLeVIYSxJw",
+        "types": [
+            "store",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Rynek Główny 3, 33-332 Kraków, Poland",
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+            "text": "Chechelska Wanda. Sklep wielobranżowy",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJk5N7Bw5bFkcRhc2I6rim_0E",
+        "types": [
+            "point_of_interest",
+            "store",
+            "establishment"
+        ],
+        "formattedAddress": "Rynek Główny 3, 33-332 Kraków, Poland",
+        "rating": 5,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 3,
+        "displayName": {
+            "text": "Pamiątki s.c.",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJkxV7Bw5bFkcRw3VfjU7IPBQ",
+        "types": [
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Rynek Główny 1/3, 31-042 Kraków, Poland",
+        "rating": 4,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 2,
+        "displayName": {
+            "text": "Galeria AB",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJR2DD5A1bFkcR0qjMihxv-4Y",
+        "types": [
+            "point_of_interest",
+            "store",
+            "establishment"
+        ],
+        "formattedAddress": "Sukiennice, Rynek Główny 1-3/26, 31-042 Kraków, Poland",
+        "rating": 3.8,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 4,
+        "displayName": {
+            "text": "Sklep “Cepelia”",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJC0_u4A1bFkcRDOFrSSh9e5w",
+        "types": [
+            "gift_shop",
+            "point_of_interest",
+            "store",
+            "establishment"
+        ],
+        "formattedAddress": "31-042 Kraków; Rynek Główny kram 21, 31-042 Kraków, Poland",
+        "rating": 4.1,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 7,
+        "displayName": {
+            "text": "Szlak MM. Studio ceramiczno - handlowe. Marklowski M.",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJD8W8SxFFFkcRL7chQDSx7po",
+        "types": [
+            "travel_agency",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "31-042 Kraków, Poland",
+        "rating": 4.6,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 11,
+        "displayName": {
+            "text": "Przewodnik po Krakowie",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJ6zaKO_NbFkcRpCgAGFJCZdw",
+        "types": [
+            "book_store",
+            "point_of_interest",
+            "store",
+            "establishment"
+        ],
+        "formattedAddress": "Rynek Główny 3, 31-042 Kraków, Poland",
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+            "text": "Sklep Muzealny Sukiennice by ART BOOKSTORE",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJHdX_AhJbFkcRBuqVXkt499w",
+        "types": [
+            "real_estate_agency",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Rynek Główny 5, 33-332 Kraków, Poland",
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+            "text": "HomeOffer Nieruchomości",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJlZwxBw5bFkcRmaNncw7kZfM",
+        "types": [
+            "coffee_shop",
+            "cafe",
+            "food_store",
+            "food",
+            "point_of_interest",
+            "store",
+            "establishment"
+        ],
+        "formattedAddress": "Rynek Główny 3, 31-048 Kraków, Poland",
+        "rating": 3.6,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 871,
+        "displayName": {
+            "text": "Szał Cafe",
+            "languageCode": "en"
+        }
+    },
+    {
+        "id": "ChIJhxqcCA5bFkcRsPWUUJ9331g",
+        "types": [
+            "real_estate_agency",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Rynek Główny 1, 31-422 Kraków, Poland",
+        "businessStatus": "OPERATIONAL",
+        "displayName": {
+            "text": "Jarczewski Nieruchomości",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJV1zmws1bFkcRiyfBmM95qCw",
+        "types": [
+            "art_gallery",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Rynek Główny 1/3 boks 18, 31-042 Kraków, Poland",
+        "rating": 5,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 2,
+        "displayName": {
+            "text": "Galeria BB Sklep",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJwz7zBw5bFkcRJ_t-QAgrlP8",
+        "types": [
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Rynek Główny 3, 31-042 Kraków, Poland",
+        "rating": 4.5,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 13043,
+        "displayName": {
+            "text": "Restauracja Sukiennice",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJ9Rk2BW1bFkcRmKV_1sTfuaw",
+        "types": [
+            "museum",
+            "historical_place",
+            "tourist_attraction",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Wawel 5, 31-001 Kraków, Poland",
+        "rating": 4.7,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 159061,
+        "displayName": {
+            "text": "Wawel Royal Castle-State Art Collection",
+            "languageCode": "en"
+        }
+    },
+    {
+        "id": "ChIJiUzN6m1bFkcRaH3Imcxil4k",
+        "types": [
+            "tourist_attraction",
+            "sculpture",
+            "monument",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Stare Miasto, Kraków, Poland",
+        "rating": 4.6,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 25215,
+        "displayName": {
+            "text": "Dragon Statue",
+            "languageCode": "en"
+        }
+    },
+    {
+        "id": "ChIJiXIJm3JbFkcRvsFNs8GfaA4",
+        "types": [
+            "parking",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "plac Na Groblach 24, 31-101 Kraków, Poland",
+        "rating": 4.4,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 3130,
+        "displayName": {
+            "text": "Parking Wawel",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJY7-qdG1bFkcRJ3ataT_e_Hg",
+        "types": [
+            "tourist_attraction",
+            "church",
+            "place_of_worship",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Wawel, 31-001 Kraków, Poland",
+        "rating": 4.8,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 32439,
+        "displayName": {
+            "text": "Wawel Cathedral",
+            "languageCode": "en"
+        }
+    },
+    {
+        "id": "ChIJ8f4YlmxbFkcRW1mJQ24Dmjk",
+        "types": [
+            "seafood_restaurant",
+            "barbecue_restaurant",
+            "bar",
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Świętej Gertrudy 26/29, 31-048 Kraków, Poland",
+        "rating": 4.4,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 28039,
+        "displayName": {
+            "text": "Pod Wawelem Kompania Kuflowa",
+            "languageCode": "en"
+        }
+    },
+    {
+        "id": "ChIJoUI27HJbFkcRmG4c78wmJHo",
+        "types": [
+            "hotel",
+            "wedding_venue",
+            "lodging",
+            "event_venue",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Powiśle 7, 31-101 Kraków, Poland",
+        "rating": 4.6,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 3343,
+        "displayName": {
+            "text": "Sheraton Grand Krakow",
+            "languageCode": "en"
+        }
+    },
+    {
+        "id": "ChIJ8QGqhjJbFkcRR0kP2c_Ijck",
+        "types": [
+            "museum",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Floriana Straszewskiego 15, 31-101 Kraków, Poland",
+        "rating": 4.6,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 5279,
+        "displayName": {
+            "text": "Museum of Illusions Krakow",
+            "languageCode": "en"
+        }
+    },
+    {
+        "id": "ChIJF4FqFm5bFkcRh71dBn7SdpA",
+        "types": [
+            "museum",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Marii Konopnickiej 26, 30-302 Kraków, Poland",
+        "rating": 4.5,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 5854,
+        "displayName": {
+            "text": "Manggha Museum of Japanese Art and Technology",
+            "languageCode": "en"
+        }
+    },
+    {
+        "id": "ChIJm76ksXhbFkcReinGh-fkyjk",
+        "types": [
+            "bar",
+            "meal_delivery",
+            "food_delivery",
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Grodzka 43, 31-001 Kraków, Poland",
+        "rating": 4.1,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 4188,
+        "displayName": {
+            "text": "Bar mleczny \"Pod Temidą\"",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJAQAAACNbFkcR47-jK6ej2nE",
+        "types": [
+            "local_government_office",
+            "government_office",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Świętego Sebastiana 11, 31-049 Kraków, Poland",
+        "rating": 3.8,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 821,
+        "displayName": {
+            "text": "Małopolski Urząd Wojewódzki. Wydział Spraw Obywatelskich. Oddział paszportowy",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJnxYqgmtbFkcRdVgbOFnY4LE",
+        "types": [
+            "hotel",
+            "lodging",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "12-14 Stradomska street, 31-058 Kraków, Poland",
+        "rating": 4.8,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 642,
+        "displayName": {
+            "text": "Stradom House, Autograph Collection",
+            "languageCode": "en"
+        }
+    },
+    {
+        "id": "ChIJuxoA3WxbFkcRkkN9Hs9xE0s",
+        "types": [
+            "tourist_attraction",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "30-001 Kraków, Poland",
+        "rating": 4.5,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 645,
+        "displayName": {
+            "text": "The Cross of Katyń",
+            "languageCode": "en"
+        }
+    },
+    {
+        "id": "ChIJpYp_FkZbFkcRxBWJ_cZJPxc",
+        "types": [
+            "hotel",
+            "lodging",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Świętej Gertrudy 12, 31-048 Kraków, Poland",
+        "rating": 4.7,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 1394,
+        "displayName": {
+            "text": "Leonardo Boutique Hotel Krakow Old Town",
+            "languageCode": "en"
+        }
+    },
+    {
+        "id": "ChIJbWWu3RJbFkcRXGEhHFzCIvs",
+        "types": [
+            "tourist_attraction",
+            "church",
+            "place_of_worship",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Grodzka 52A, 31-044 Kraków, Poland",
+        "rating": 4.7,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 7382,
+        "displayName": {
+            "text": "Saints Peter and Paul Church",
+            "languageCode": "en"
+        }
+    },
+    {
+        "id": "ChIJq36dwSBbFkcRQcomh66jwxc",
+        "types": [
+            "parking",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Floriana Straszewskiego 14, 31-101 Kraków, Poland",
+        "rating": 4.2,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 209,
+        "displayName": {
+            "text": "Parking Straszewskiego",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJR6wICAVbFkcR6UZQ97EuWCo",
+        "types": [
+            "bakery",
+            "confectionery",
+            "wholesaler",
+            "food_store",
+            "food",
+            "store",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Świętej Gertrudy 24, 31-048 Kraków, Poland",
+        "rating": 4.7,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 1270,
+        "displayName": {
+            "text": "Chimney Cake Bakery",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJw8eBvUtbFkcR6caX2CEgwM0",
+        "types": [
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Podzamcze 20, 33-332 Kraków, Poland",
+        "rating": 4.8,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 255,
+        "displayName": {
+            "text": "Melexy pod Wawelem, Zwiedzanie Krakowa, Przewodnik, City Tours Cracow",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJV3RjgxJbFkcRRQxo_UNpMCc",
+        "types": [
+            "parking",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Poselska 7, 31-002 Kraków, Poland",
+        "rating": 4.4,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 307,
+        "displayName": {
+            "text": "Parking Strzeżony w centrum miasta",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJOy9Nbm1bFkcRYJULcis8BmA",
+        "types": [
+            "park",
+            "premise",
+            "point_of_interest",
+            "establishment",
+            "street_address"
+        ],
+        "formattedAddress": "Kraków Old Town, 33-332 Kraków, Poland",
+        "displayName": {
+            "text": "Cytadela Twierdzy Kraków",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJKVkYZaFbFkcR5L_OQ9S7ySg",
+        "types": [
+            "historical_landmark",
+            "historical_place",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Stare Miasto, 31-003 Kraków, Poland",
+        "rating": 4.6,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 30,
+        "displayName": {
+            "text": "Fundamenty kościoła św. Michała",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJNVaTBm1bFkcR0Y12bN0hEnQ",
+        "types": [
+            "garden",
+            "premise",
+            "park",
+            "point_of_interest",
+            "establishment",
+            "street_address"
+        ],
+        "formattedAddress": "Wawel 5, 31-003 Kraków, Poland",
+        "displayName": {
+            "text": "Wawel 5"
+        }
+    },
+    {
+        "id": "ChIJ90ARC21bFkcR1zb8OPpmVKU",
+        "types": [
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "31-001 Kraków, Poland",
+        "rating": 4.6,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 10,
+        "displayName": {
+            "text": "Wikarówka na Wawelu",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJD-I7QwBbFkcRw76ATE7MQsM",
+        "types": [
+            "historical_landmark",
+            "historical_place",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Zamek Wawel 3, 31-001 Kraków, Poland",
+        "rating": 5,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 8,
+        "displayName": {
+            "text": "Wieża Srebrnych Dzwonów",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJ0fBaVzpbFkcRKoHddO23q7Q",
+        "types": [
+            "church",
+            "place_of_worship",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Wawel 1, 31-003 Kraków, Poland",
+        "rating": 4.7,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 19,
+        "displayName": {
+            "text": "Kaplica Wazów",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJoQ0mEYJbFkcR7l5quqpm6ls",
+        "types": [
+            "church",
+            "place_of_worship",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Wawel 3, 31-001 Kraków, Poland",
+        "rating": 4.9,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 28,
+        "displayName": {
+            "text": "Kaplica Zygmuntowska",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJE1I0DXVbFkcRYP1wg0DI5Bc",
+        "types": [
+            "museum",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Kraków, Poland",
+        "rating": 4.6,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 86,
+        "displayName": {
+            "text": "Wawel Zaginiony",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJofHccv1bFkcRp48lq5zXXqs",
+        "types": [
+            "historical_landmark",
+            "historical_place",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Zamek Wawel, Kraków, Poland",
+        "rating": 4.6,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 9,
+        "displayName": {
+            "text": "Fundamenty domu Stanisława Borka na Wawelu",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJ6YSZbABbFkcRZoXW3tdhTXo",
+        "types": [
+            "coffee_shop",
+            "cafe",
+            "food_store",
+            "food",
+            "point_of_interest",
+            "store",
+            "establishment"
+        ],
+        "formattedAddress": "Zamek Wawel, 31-001 Kraków, Poland",
+        "rating": 3.7,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 23,
+        "displayName": {
+            "text": "Kawiarnia letnia przy białym murze",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJk_GTEW1bFkcR8NSPjhfXh20",
+        "types": [
+            "church",
+            "place_of_worship",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Wawel 3, 31-001 Kraków, Poland",
+        "rating": 4.9,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 14,
+        "displayName": {
+            "text": "Kaplica Świętokrzyska",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJQZ8CEm1bFkcR4-ER07x4i-E",
+        "types": [
+            "cemetery",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Wawel, 31-001 Kraków, Poland",
+        "rating": 4.4,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 18,
+        "displayName": {
+            "text": "St. Leonard's Crypt",
+            "languageCode": "en"
+        }
+    },
+    {
+        "id": "ChIJGTufc21bFkcR3imijXSpvD8",
+        "types": [
+            "historical_landmark",
+            "historical_place",
+            "tourist_attraction",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Wawel 3, 31-001 Kraków, Poland",
+        "rating": 4.5,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 233,
+        "displayName": {
+            "text": "Monument of John Paul II",
+            "languageCode": "en"
+        }
+    },
+    {
+        "id": "ChIJ86z_cgBbFkcRUSfTmex0kMk",
+        "types": [
+            "historical_landmark",
+            "historical_place",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Zamek Wawel, Kraków, Poland",
+        "rating": 4.4,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 20,
+        "displayName": {
+            "text": "Fundamenty kościóła św. Jerzego",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJsy35KQBbFkcRsG91vmNIk8Q",
+        "types": [
+            "church",
+            "place_of_worship",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Zamek Wawel 1, 31-001 Kraków, Poland",
+        "rating": 4,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 4,
+        "displayName": {
+            "text": "Vavelio katedra",
+            "languageCode": "en"
+        }
+    },
+    {
+        "id": "ChIJn5Bpro1bFkcRyJlz5SwNBFk",
+        "types": [
+            "historical_landmark",
+            "historical_place",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Kraków, Poland",
+        "rating": 4.8,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 246,
+        "displayName": {
+            "text": "Historical courtyard | Wawel Royal Castle",
+            "languageCode": "en"
+        }
+    },
+    {
+        "id": "ChIJf14IMzVbFkcRw-4bKKfce4g",
+        "types": [
+            "historical_landmark",
+            "historical_place",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Wawel 3, 31-001 Kraków, Poland",
+        "rating": 4.1,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 7,
+        "displayName": {
+            "text": "Dziedziniec Batorego",
+            "languageCode": "pl"
+        }
+    },
+    {
+        "id": "ChIJZW8ymW1bFkcR_ui6AcSoqRY",
+        "types": [
+            "garden",
+            "premise",
+            "park",
+            "point_of_interest",
+            "establishment",
+            "street_address"
+        ],
+        "formattedAddress": "Wawel 5, 31-001 Kraków, Poland",
+        "displayName": {
+            "text": "Wawel 5"
         }
     }
 ]
