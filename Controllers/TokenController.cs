@@ -10,31 +10,29 @@ namespace WebAPI.Controllers
     public class TokenController : ControllerBase
     {
         private readonly TokenService _tokenService;
+        private readonly UserService _userService;
 
-        public TokenController(TokenService tokenService)
+        public TokenController(TokenService tokenService, UserService userService)
         {
             _tokenService = tokenService;
+            _userService = userService;
         }
 
         [HttpPost("refresh")]
-        public async Task<IActionResult> Refresh([FromBody] RefreshTokenDto request)
+        public async Task<IActionResult> Refresh([FromBody] RefreshTokenDto dto)
         {
-            if (string.IsNullOrEmpty(request.RefreshToken))
-            {
-                return BadRequest("Refresh token is required.");
-            }
+            if (string.IsNullOrEmpty(dto.RefreshToken))
+                return BadRequest(new { reason = "MissingRefreshToken" });
 
-            var result = await _tokenService.RefreshTokensAsync(request.RefreshToken);
+            var result = await _userService.TryRefreshAsync(dto.RefreshToken);
 
-            if (result == null)
-            {
-                return Unauthorized("Invalid or expired refresh token.");
-            }
+            if (!result.Success)
+                return Unauthorized(new { reason = result.Reason });
 
             return Ok(new
             {
-                AccessToken = result.Value.AccessToken,
-                RefreshToken = result.Value.RefreshToken
+                AccessToken = result.AccessToken,
+                RefreshToken = result.RefreshToken
             });
         }
     }

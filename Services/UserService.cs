@@ -129,13 +129,21 @@ namespace WebAPI.Services
                 return null;
             }
 
+            var oldTokens = _db.UserRefreshTokens.Where(t => t.UserId == user.Id && !t.IsRevoked);
+            foreach (var token in oldTokens)
+            {
+                token.IsRevoked = true;
+            }
+            await _db.SaveChangesAsync();
+
+
             var (accessToken, refreshToken) = _tokenService.GenerateTokens(user);
 
             var refreshTokenEntity = new UserRefreshToken
             {
                 UserId = user.Id,
                 RefreshToken = refreshToken,
-                ExpiryDate = DateTime.UtcNow.AddDays(7), // refresh token np. 7 dni
+                ExpiryDate = DateTime.UtcNow.AddDays(7), 
                 CreatedAt = DateTime.UtcNow,
                 IsRevoked = false
             };
@@ -189,7 +197,8 @@ namespace WebAPI.Services
                 IsRevoked = false
             };
 
-            await _tokenService.SaveRefreshTokenAsync(refreshTokenEntity);
+            _db.UserRefreshTokens.Add(refreshTokenEntity);
+            await _db.SaveChangesAsync();
 
             return new LoginResponseDto
             {
@@ -200,6 +209,41 @@ namespace WebAPI.Services
                 RefreshToken = refreshToken
             };
         }
+
+        public async Task<(bool Success, string Reason, string? AccessToken, string? RefreshToken)> TryRefreshAsync(string refreshToken)
+        {
+            var storedToken = await _db.UserRefreshTokens
+                .FirstOrDefaultAsync(t => t.RefreshToken == refreshToken);
+
+            if (storedToken == null)
+                return (false, "RefreshTokenNotFound", null, null);
+
+            if (storedToken.IsRevoked)
+                return (false, "RefreshTokenRevoked", null, null);
+
+            if (storedToken.ExpiryDate < DateTime.UtcNow)
+                return (false, "RefreshTokenExpired", null, null);
+
+            var user = await _db.Users.FindAsync(storedToken.UserId);
+            if (user == null)
+                return (false, "UserNotFound", null, null);
+
+            storedToken.IsRevoked = true;
+
+            var (newAccess, newRefresh) = _tokenService.GenerateTokens(user);
+
+            _db.UserRefreshTokens.Add(new UserRefreshToken
+            {
+                UserId = user.Id,
+                RefreshToken = newRefresh,
+                ExpiryDate = DateTime.UtcNow.AddDays(7),
+                CreatedAt = DateTime.UtcNow
+            });
+
+            await _db.SaveChangesAsync();
+            return (true, "Success", newAccess, newRefresh);
+        }
+
 
     }
 }

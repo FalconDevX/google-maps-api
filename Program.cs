@@ -29,6 +29,7 @@ builder.Services.AddAuthentication(options =>
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
+
 .AddJwtBearer(options =>
 {
     options.RequireHttpsMetadata = false;
@@ -43,7 +44,39 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(key),
         ClockSkew = TimeSpan.Zero
     };
+
+    options.Events = new JwtBearerEvents
+    {
+        OnAuthenticationFailed = context =>
+        {
+            context.Response.ContentType = "application/json";
+            context.Response.StatusCode = 401;
+
+            if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
+            {
+                return context.Response.WriteAsJsonAsync(new { reason = "AccessTokenExpired" });
+            }
+
+            return context.Response.WriteAsJsonAsync(new { reason = "InvalidToken" });
+        },
+        OnChallenge = context =>
+        {
+            if (string.IsNullOrEmpty(context.Request.Headers["Authorization"]))
+            {
+                context.HandleResponse();
+                context.Response.StatusCode = 401;
+                context.Response.ContentType = "application/json";
+                return context.Response.WriteAsJsonAsync(new { reason = "MissingToken" });
+            }
+
+            context.HandleResponse();
+            context.Response.StatusCode = 401;
+            context.Response.ContentType = "application/json";
+            return context.Response.WriteAsJsonAsync(new { reason = "UnauthorizedAccess" });
+        }
+    };
 });
+
 
 builder.Services.AddCors(options =>
 {
