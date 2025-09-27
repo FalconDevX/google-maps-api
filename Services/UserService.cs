@@ -148,7 +148,9 @@ namespace WebAPI.Services
                 IsRevoked = false
             };
 
-            await _tokenService.SaveRefreshTokenAsync(refreshTokenEntity);
+            _db.UserRefreshTokens.Add(refreshTokenEntity);
+            await _db.SaveChangesAsync();
+
 
             return new LoginResponseDto
             {
