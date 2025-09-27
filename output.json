@@ -10,7 +10,7 @@
         "formattedAddress": "Rynek Główny, 31-422 Kraków, Poland",
         "rating": 4.8,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 178486,
+        "userRatingCount": 179055,
         "displayName": {
             "text": "Rynek Główny",
             "languageCode": "en"
@@ -28,7 +28,7 @@
         "formattedAddress": "plac Mariacki 5, 31-042 Kraków, Poland",
         "rating": 4.8,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 18014,
+        "userRatingCount": 18115,
         "displayName": {
             "text": "St. Mary's Basilica",
             "languageCode": "en"
@@ -45,7 +45,7 @@
         "formattedAddress": "Rynek Główny 3, 31-042 Kraków, Poland",
         "rating": 4.7,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 13807,
+        "userRatingCount": 13871,
         "displayName": {
             "text": "MNK Sukiennice",
             "languageCode": "en"
@@ -62,7 +62,7 @@
         "formattedAddress": "Rynek Główny, 31-042 Kraków, Poland",
         "rating": 4.9,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 2352,
+        "userRatingCount": 2397,
         "displayName": {
             "text": "Old Town of Kraków",
             "languageCode": "en"
@@ -72,9 +72,9 @@
         "id": "ChIJjUf7MRBbFkcRg9Ls9752tqU",
         "types": [
             "museum",
-            "historical_landmark",
             "tourist_attraction",
             "monument",
+            "historical_landmark",
             "historical_place",
             "point_of_interest",
             "establishment"
@@ -82,7 +82,7 @@
         "formattedAddress": "Basztowa, 30-547 Kraków, Poland",
         "rating": 4.6,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 6135,
+        "userRatingCount": 6191,
         "displayName": {
             "text": "Kraków Barbican",
             "languageCode": "en"
@@ -99,7 +99,7 @@
         "formattedAddress": "Pijarska 15, 31-015 Kraków, Poland",
         "rating": 4.8,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 8555,
+        "userRatingCount": 8645,
         "displayName": {
             "text": "Czartoryski Museum",
             "languageCode": "en"
@@ -116,7 +116,7 @@
         "formattedAddress": "plac Szczepański 8, 31-011 Kraków, Poland",
         "rating": 4.6,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 9777,
+        "userRatingCount": 9896,
         "displayName": {
             "text": "Morskie Oko",
             "languageCode": "en"
@@ -133,7 +133,7 @@
         "formattedAddress": "Grodzka 26, 31-044 Kraków, Poland",
         "rating": 4.3,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 8810,
+        "userRatingCount": 8826,
         "displayName": {
             "text": "Restauracja McDonald's",
             "languageCode": "en"
@@ -152,7 +152,7 @@
         "formattedAddress": "Szpitalna 22, 31-024 Kraków, Poland",
         "rating": 4.8,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 8621,
+        "userRatingCount": 8773,
         "displayName": {
             "text": "Tawerna Wilczy Dół",
             "languageCode": "pl"
@@ -169,7 +169,7 @@
         "formattedAddress": "Rynek Główny 1, 31-042 Kraków, Poland",
         "rating": 4.5,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 9144,
+        "userRatingCount": 9183,
         "displayName": {
             "text": "Rynek Underground Museum",
             "languageCode": "en"
@@ -185,7 +185,7 @@
         "formattedAddress": "Wielopole 2, 31-072 Kraków, Poland",
         "rating": 4.3,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 76,
+        "userRatingCount": 77,
         "displayName": {
             "text": "Przystanek Turystyczny Kiss&Ride",
             "languageCode": "pl"
@@ -197,37 +197,18 @@
             "supermarket",
             "grocery_store",
             "food_store",
-            "store",
             "food",
             "point_of_interest",
+            "store",
             "establishment"
         ],
         "formattedAddress": "Rynek Główny 34, 31-010 Kraków, Poland",
         "rating": 4.1,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 3406,
+        "userRatingCount": 3410,
         "displayName": {
             "text": "Biedronka",
             "languageCode": "en"
-        }
-    },
-    {
-        "id": "ChIJXawaRxBbFkcRx-yOIyoSLO8",
-        "types": [
-            "brunch_restaurant",
-            "diner",
-            "restaurant",
-            "food",
-            "point_of_interest",
-            "establishment"
-        ],
-        "formattedAddress": "Szpitalna 40, 31-024 Kraków, Poland",
-        "rating": 4.6,
-        "businessStatus": "OPERATIONAL",
-        "userRatingCount": 9547,
-        "displayName": {
-            "text": "Szalone Widelce",
-            "languageCode": "pl"
         }
     },
     {
@@ -241,10 +222,29 @@
         "formattedAddress": "plac Świętego Ducha 1, 31-023 Kraków, Poland",
         "rating": 4.8,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 5497,
+        "userRatingCount": 5510,
         "displayName": {
             "text": "Juliusz Słowacki Theatre",
             "languageCode": "en"
+        }
+    },
+    {
+        "id": "ChIJXawaRxBbFkcRx-yOIyoSLO8",
+        "types": [
+            "diner",
+            "brunch_restaurant",
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "formattedAddress": "Szpitalna 40, 31-024 Kraków, Poland",
+        "rating": 4.6,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 9596,
+        "displayName": {
+            "text": "Szalone Widelce",
+            "languageCode": "pl"
         }
     },
     {
@@ -258,7 +258,7 @@
         "formattedAddress": "Grodzka 50/1, 31-044 Kraków, Poland",
         "rating": 4.4,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 9148,
+        "userRatingCount": 9169,
         "displayName": {
             "text": "The Leaky Cauldron",
             "languageCode": "en"
@@ -275,7 +275,7 @@
         "formattedAddress": "Szewska 2, 31-009 Kraków, Poland",
         "rating": 4.1,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 7472,
+        "userRatingCount": 7483,
         "displayName": {
             "text": "McDonald's",
             "languageCode": "en"
@@ -285,15 +285,15 @@
         "id": "ChIJ_ayTwhNbFkcRQXrE_D-JRoI",
         "types": [
             "post_office",
-            "government_office",
             "finance",
             "point_of_interest",
+            "government_office",
             "establishment"
         ],
         "formattedAddress": "Westerplatte 20, 31-045 Kraków, Poland",
         "rating": 3.6,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 118,
+        "userRatingCount": 119,
         "displayName": {
             "text": "Poczta Główna",
             "languageCode": "pl"
@@ -303,16 +303,20 @@
         "id": "ChIJkfrg8hNbFkcR0iKAGJhH9s4",
         "types": [
             "hotel",
-            "wedding_venue",
-            "event_venue",
+            "convention_center",
+            "night_club",
             "lodging",
+            "event_venue",
+            "bar",
+            "restaurant",
+            "food",
             "point_of_interest",
             "establishment"
         ],
         "formattedAddress": "Wielopole 4, 31-072 Kraków, Poland",
         "rating": 4.6,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 2684,
+        "userRatingCount": 2699,
         "displayName": {
             "text": "Holiday Inn Krakow City Centre by IHG",
             "languageCode": "en"
@@ -329,8 +333,8 @@
         ],
         "formattedAddress": "Św. Tomasza 24, 33-332 Kraków, Poland",
         "rating": 4.7,
-        "businessStatus": "CLOSED_TEMPORARILY",
-        "userRatingCount": 5782,
+        "businessStatus": "OPERATIONAL",
+        "userRatingCount": 5802,
         "displayName": {
             "text": "Milkbar Tomasza",
             "languageCode": "en"
@@ -347,7 +351,7 @@
         "formattedAddress": "Poselska 22, 31-002 Kraków, Poland",
         "rating": 4.7,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 7770,
+        "userRatingCount": 7856,
         "displayName": {
             "text": "Czarna Kaczka / Black Duck",
             "languageCode": "en"
@@ -392,7 +396,7 @@
         "formattedAddress": "plac Mariacki, 30-001 Kraków, Poland",
         "rating": 4.5,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 64,
+        "userRatingCount": 65,
         "displayName": {
             "text": "Żak",
             "languageCode": "en"
@@ -408,7 +412,7 @@
         "formattedAddress": "plac Mariacki 5, 33-332 Kraków, Poland",
         "rating": 4.8,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 357,
+        "userRatingCount": 359,
         "displayName": {
             "text": "Bugle Tower",
             "languageCode": "en"
@@ -424,7 +428,7 @@
         "formattedAddress": "plac Mariacki 5, 33-332 Kraków, Poland",
         "rating": 4.8,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 188,
+        "userRatingCount": 190,
         "displayName": {
             "text": "Veit Stoss Altarpiece",
             "languageCode": "en"
@@ -477,14 +481,14 @@
             "bar",
             "event_venue",
             "restaurant",
-            "food",
             "point_of_interest",
+            "food",
             "establishment"
         ],
         "formattedAddress": "plac Mariacki 1/4, 31-042 Kraków, Poland",
         "rating": 3.8,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 2927,
+        "userRatingCount": 2940,
         "displayName": {
             "text": "Bulldog",
             "languageCode": "en"
@@ -525,14 +529,14 @@
             "pizza_restaurant",
             "seafood_restaurant",
             "restaurant",
-            "food",
             "point_of_interest",
+            "food",
             "establishment"
         ],
         "formattedAddress": "plac Mariacki 8, 31-041 Kraków, Poland",
         "rating": 4.8,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 1685,
+        "userRatingCount": 1785,
         "displayName": {
             "text": "Sorrento Trattoria",
             "languageCode": "pl"
@@ -541,8 +545,8 @@
     {
         "id": "ChIJqRrf9xFbFkcRMtv_z6btEFk",
         "types": [
-            "store",
             "point_of_interest",
+            "store",
             "establishment"
         ],
         "formattedAddress": "plac Mariacki 8, 31-042 Kraków, Poland",
@@ -608,14 +612,14 @@
         "types": [
             "american_restaurant",
             "restaurant",
-            "food",
             "point_of_interest",
+            "food",
             "establishment"
         ],
         "formattedAddress": "Mariacki Square 9, 31-042 Kraków, Poland",
         "rating": 4.4,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 9870,
+        "userRatingCount": 9922,
         "displayName": {
             "text": "Hard Rock Cafe",
             "languageCode": "pl"
@@ -626,21 +630,21 @@
         "types": [
             "italian_restaurant",
             "pizza_restaurant",
+            "wine_bar",
             "seafood_restaurant",
             "mediterranean_restaurant",
-            "wine_bar",
             "bar",
             "food_store",
             "restaurant",
-            "food",
-            "store",
             "point_of_interest",
+            "store",
+            "food",
             "establishment"
         ],
         "formattedAddress": "plac Mariacki 2, 31-042 Kraków, Poland",
         "rating": 4.4,
         "businessStatus": "OPERATIONAL",
-        "userRatingCount": 1614,
+        "userRatingCount": 1627,
         "displayName": {
             "text": "Restauracja Bianca",
             "languageCode": "pl"

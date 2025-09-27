@@ -11,14 +11,17 @@ votes = []
 
 category_points = {}
 
-if os.path.exists("votes.json"):
+if os.path.exists("votes.json") and os.path.getsize("votes.json") > 0:
     with open("votes.json", "r", encoding="utf-8") as f:
         old_category_points = json.load(f)
 else:
-    old_category_points = {}
+    old_category_points = {} 
 
-with open("output.json", "r", encoding="utf-8") as f:
-    data = json.load(f)
+if os.path.exists("output.json") and os.path.getsize("output.json") > 0:
+    with open("output.json", "r", encoding="utf-8") as f:
+        data = json.load(f)
+else:
+    data = []
 
 remaining_places = list(range(len(data)))
 

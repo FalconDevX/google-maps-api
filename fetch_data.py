@@ -2,13 +2,13 @@ import requests
 import json
 
 # url = "http://34.56.66.163/api/GoogleMaps/getNearbyPlacesByName"
-url = "https://localhost:63286/api/GoogleMaps/getNearbyPlacesByName"
+url = "http://34.56.66.163/api/GoogleMaps/getNearbyPlacesByName"
 
 all_results = []  
 
 places = []
 
-with open("places.csv", "r", encoding="utf-8") as file:
+with open("places.json", "r", encoding="utf-8") as file:
     reader = file.readlines()
     for line in reader:
         places.append(line.strip())
@@ -16,7 +16,8 @@ with open("places.csv", "r", encoding="utf-8") as file:
 for place in places[:20]:
     params = {
         "query": place,
-        "radius": 500
+        "radius": 500,
+        "rankPreference": "POPULARITY"
     }
 
     response = requests.get(url, params=params, verify=False)
