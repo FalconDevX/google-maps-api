@@ -22,8 +22,7 @@
   transition: transform 0.3s ease;
 }    
 
-.demo-left-section,
-.demo-right-section {
+.demo-left-section {
   flex: 1;
   max-width: 400px; 
   flex-direction: column;
@@ -32,6 +31,16 @@
   gap: 20px;
 }
 
+.demo-right-section
+{
+  display: flex;
+  flex: 1;
+  max-width: 400px; 
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
 .panel-card {    
   border-width: 1px;    
   border-color: #414141;    

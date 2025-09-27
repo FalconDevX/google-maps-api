@@ -6,6 +6,8 @@ import { useState } from "react";
 import morskieOko from "../../assets/pictures/morskie-oko.png";
 import poloninaWetlinska from "../../assets/pictures/polonina-wetlinska.png";
 import sniardwy from "../../assets/pictures/sniardwy.png";
+import DemoLeftSectionTitle from "./DemoLeftSectionTitle/DemoLeftSectionTitle";
+
 
 const Demo = () => {
   const places = [
@@ -61,10 +63,9 @@ const Demo = () => {
       <DemoHeader />
       <div className="demo-content">
           <div className="demo-left-section">
-          <h1 className="demo-welcome-title">
-            Hi
-          </h1>
-        </div>
+            <DemoLeftSectionTitle />
+          </div>
+
 
         <DemoCard
           location={places[currentReelIndex].location}
