@@ -36,10 +36,7 @@ namespace WebAPI.Services
             var user = await _db.Users.FindAsync(id);
 
             var service = new UserRecommendationService();
-            string output = service.FetchPlaces();
-            Console.WriteLine(output);
-
-
+      
             if (user is null)
             {
                 return null;
@@ -246,6 +243,14 @@ namespace WebAPI.Services
             return (true, "Success", newAccess, newRefresh);
         }
 
+        public async Task RemoveRevokedRefreshTokensAsync()
+        {
+            var revokedTokens = await _db.UserRefreshTokens
+                .Where(t => t.IsRevoked)
+                .ToListAsync();
 
+            _db.UserRefreshTokens.RemoveRange(revokedTokens);
+            await _db.SaveChangesAsync();
+        }
     }
 }

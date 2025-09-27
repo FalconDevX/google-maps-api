@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using WebAPI.DTOs;
 
-
 var builder = WebApplication.CreateBuilder(args);
 builder.Logging.AddDebug();
 builder.Services.AddHttpClient<GoogleMapsService>();
@@ -20,6 +19,8 @@ options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 43))
 builder.Services.Configure<RefreshTokenDto>(builder.Configuration.GetSection("JwtSettings"));
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddSingleton<GoogleStorage>();
+builder.Services.AddScoped<UserRecommendationService>();
+
 
 var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<RefreshTokenDto>();
 var key = Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Key"]?? throw new ArgumentNullException("Key not find"));
