@@ -10,6 +10,7 @@ const LoginPanel = () => {
 
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [error, setError] = React.useState("");
 
   const logout = () => {
     localStorage.removeItem("user");
@@ -38,7 +39,6 @@ const LoginPanel = () => {
       }
 
       const data = await response.json();
-
       localStorage.setItem("user", JSON.stringify({
         ...user,
         accessToken: data.accessToken,
@@ -55,13 +55,9 @@ const LoginPanel = () => {
     }
   };
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
-  const handleLogin = async (event) => {
-    event.preventDefault();
-    setError("");
+  // ✅ Główna funkcja logowania
+  const handleLogin = async (e) => {
+    e.preventDefault(); // zapobiega przeładowaniu strony
 
     try {
       const response = await fetch("http://34.56.66.163/api/Users/login", {
@@ -70,47 +66,22 @@ const LoginPanel = () => {
         body: JSON.stringify({ email, password }),
       });
 
-      if (response.status === 401) {
-        const err = await response.json();
-
-        if (err.message === "Access token expired") {
-          await tryRefreshToken(); 
-        }
-        else{
-          logout();
-          console.error("Login failed:", err.message);
-          return;
-        }
+      if (!response.ok) {
+        const errText = await response.text();
+        setError("Nieprawidłowy email lub hasło");
+        console.error("Login failed:", response.status, errText);
+        return;
       }
-  
-      if (response.ok) {
-        const data = await response.json();
 
-        localStorage.setItem("user", JSON.stringify({
-          id: data.id,
-          username: data.username,
-          email: data.email,
-          accessToken: data.accessToken,
-          refreshToken: data.refreshToken
-        }));
+      const data = await response.json();
+      console.log("✅ Login successful:", data);
 
-        console.log("Login successful:", data);
+      localStorage.setItem("user", JSON.stringify(data));
+      navigate("/"); // po zalogowaniu — np. na stronę główną
 
-        if (data.username) {
-          localStorage.setItem('username', data.username);
-        }
-
-        localStorage.setItem('token', data.token);
-        
-        navigate("/demo");
-      } else {
-        const errorData = await response.json();
-        setError(errorData.message || "Nieprawidłowy email lub hasło.");
-        console.error("Login failed:", response.status, errorData);
-      }
-    } catch (err) {
-      setError("Wystąpił błąd sieci. Spróbuj ponownie później.");
-      console.error("Login failed:", err);
+    } catch (error) {
+      console.error("Error logging in:", error);
+      setError("Wystąpił błąd podczas logowania.");
     }
   };
 
@@ -166,7 +137,7 @@ const LoginPanel = () => {
             />
           </div>
         </div>
-        
+
         {error && <p className="error-message">{error}</p>}
 
         <button type="submit" className="login-btn">
