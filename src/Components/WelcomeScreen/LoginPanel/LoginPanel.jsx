@@ -1,90 +1,106 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./LoginPanel.css";
 import googleIcon from "../../../assets/social-icons/google-icon.webp";
 import facebookIcon from "../../../assets/social-icons/facebook-icon.webp";
 import githubIcon from "../../../assets/social-icons/github-icon.png";
-import { useNavigate } from "react-router-dom"
 
 const LoginPanel = () => {
   const navigate = useNavigate();
 
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const handleLogin = async () => {
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    setError("");
+
     try {
       const response = await fetch("http://34.56.66.163/api/Users/login", {
         method: "POST",
-        headers: {"Content-Type": "application/json" },
-        body: JSON.stringify({ email, password })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
       });
 
       if (response.ok) {
         const data = await response.json();
         console.log("Login successful:", data);
-        navigate("/demo ");
-      } else {
-        const errorText = await response.text();
-        console.error("Login failed:", response.status, errorText);
-      }
 
-    } catch (error) {
-      console.error("Login failed:", error);
+        if (data.username) {
+          localStorage.setItem('username', data.username);
+        }
+
+        localStorage.setItem('token', data.token);
+        
+        navigate("/demo");
+      } else {
+        const errorData = await response.json();
+        setError(errorData.message || "Nieprawidłowy email lub hasło.");
+        console.error("Login failed:", response.status, errorData);
+      }
+    } catch (err) {
+      setError("Wystąpił błąd sieci. Spróbuj ponownie później.");
+      console.error("Login failed:", err);
     }
-  }
+  };
 
   return (
     <div className="login-panel">
-      <div className="login-card">
+      <form className="login-card" onSubmit={handleLogin}>
         <h2 className="login-title">Zaloguj się</h2>
         <p className="login-subtitle">
           Wróć do planów lub odkryj spokojne miejsca w Twoim tempie.
         </p>
-        
+
         <div className="social-login">
-          <button className="social-btn google-btn">
+          <button type="button" className="social-btn google-btn">
             <img src={googleIcon} alt="Google Icon" className="social-icon" />
             Kontynuuj z Google
           </button>
-          <button className="social-btn facebook-btn">
+          <button type="button" className="social-btn facebook-btn">
             <img src={facebookIcon} alt="Facebook Icon" className="social-icon" />
             Kontynuuj z Facebook
           </button>
-          <button className="social-btn github-btn">
+          <button type="button" className="social-btn github-btn">
             <img src={githubIcon} alt="GitHub Icon" className="social-icon" />
             Kontynuuj z GitHub
           </button>
         </div>
-        
+
         <div className="separator">
           <span className="separator-text">albo</span>
         </div>
-        
+
         <div className="form-fields">
           <div className="input-group">
             <label className="input-label">Email</label>
-            <input 
-              type="email" 
-              className="form-input" 
+            <input
+              type="email"
+              className="form-input"
               placeholder="np. anna@calm.dev"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
-          
+
           <div className="input-group">
             <label className="input-label">Hasło</label>
-            <input 
-              type="password" 
-              className="form-input" 
+            <input
+              type="password"
+              className="form-input"
               placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
         </div>
+        
+        {error && <p className="error-message">{error}</p>}
 
-        <button className="login-btn" onClick={handleLogin}>
+        <button type="submit" className="login-btn">
           Zaloguj się
         </button>
 
@@ -94,7 +110,7 @@ const LoginPanel = () => {
             Zarejestruj się
           </a>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

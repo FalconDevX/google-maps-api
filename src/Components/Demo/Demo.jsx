@@ -2,7 +2,7 @@ import DemoHeader from "./DemoHeader/DemoHeader";
 import "./Demo.css";
 import DemoCard from "./DemoCard/DemoCard";
 import {BookMarkedIcon,SettingsIcon,ChartNoAxesCombined} from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import morskieOko from "../../assets/pictures/morskie-oko.png";
 import poloninaWetlinska from "../../assets/pictures/polonina-wetlinska.png";
 import sniardwy from "../../assets/pictures/sniardwy.png";
@@ -40,6 +40,14 @@ const Demo = () => {
 
   const [currentReelIndex, setCurrentReelIndex] = useState(0);
   const [savedPlaces, setSavedPlaces] = useState([]);
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) {
+      setUsername(storedUsername);
+    }
+  }, []); 
 
   const handleSavePlace = (place) => {
     if (!savedPlaces.some((p) => p.title === place.title)) {
@@ -56,13 +64,15 @@ const Demo = () => {
     setCurrentReelIndex((prevIndex) => (prevIndex + 1) % places.length);
   };
 
+  const displayName = username;
+
   return (
     <div className="demo-page">
       <DemoHeader />
       <div className="demo-content">
           <div className="demo-left-section">
           <h1 className="demo-welcome-title">
-            Hi
+            Hi, {displayName}
           </h1>
         </div>
 
