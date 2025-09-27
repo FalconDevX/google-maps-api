@@ -60,6 +60,12 @@ const Demo = () => {
     <div className="demo-page">
       <DemoHeader />
       <div className="demo-content">
+          <div className="demo-left-section">
+          <h1 className="demo-welcome-title">
+            Hi
+          </h1>
+        </div>
+
         <DemoCard
           location={places[currentReelIndex].location}
           country={places[currentReelIndex].country}
@@ -114,6 +120,7 @@ const Demo = () => {
             </h4>
           </div>
         </div>
+        
       </div>
     </div>
   );

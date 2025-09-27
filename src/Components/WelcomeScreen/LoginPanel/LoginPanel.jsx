@@ -22,6 +22,7 @@ const LoginPanel = () => {
       if (response.ok) {
         const data = await response.json();
         console.log("Login successful:", data);
+        navigate("/demo ");
       } else {
         const errorText = await response.text();
         console.error("Login failed:", response.status, errorText);
