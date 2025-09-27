@@ -20,6 +20,8 @@ public class TokenService
         var accessToken = new JwtBuilder()
             .WithAlgorithm(new HMACSHA256Algorithm())
             .WithSecret(_secret)
+            .AddClaim("iss", "MyApp")        
+            .AddClaim("aud", "AppUsers")    
             .AddClaim("exp", DateTimeOffset.UtcNow.AddMinutes(15).ToUnixTimeSeconds())
             .AddClaim("sub", user.Id)
             .AddClaim("name", user.Username)
@@ -28,4 +30,5 @@ public class TokenService
         var refreshToken = Convert.ToBase64String(RandomNumberGenerator.GetBytes(32));
         return (accessToken, refreshToken);
     }
+
 }

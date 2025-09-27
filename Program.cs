@@ -21,7 +21,6 @@ builder.Services.AddScoped<TokenService>();
 builder.Services.AddSingleton<GoogleStorage>();
 builder.Services.AddScoped<UserRecommendationService>();
 
-
 var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<RefreshTokenDto>();
 var key = Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Key"]?? throw new ArgumentNullException("Key not find"));
 
