@@ -55,9 +55,8 @@ const LoginPanel = () => {
     }
   };
 
-  // ✅ Główna funkcja logowania
   const handleLogin = async (e) => {
-    e.preventDefault(); // zapobiega przeładowaniu strony
+    e.preventDefault(); 
 
     try {
       const response = await fetch("http://34.56.66.163/api/Users/login", {
@@ -77,7 +76,7 @@ const LoginPanel = () => {
       console.log("✅ Login successful:", data);
 
       localStorage.setItem("user", JSON.stringify(data));
-      navigate("/"); // po zalogowaniu — np. na stronę główną
+      navigate("/"); 
 
     } catch (error) {
       console.error("Error logging in:", error);
