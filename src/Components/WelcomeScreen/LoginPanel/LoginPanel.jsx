@@ -17,47 +17,6 @@ const LoginPanel = () => {
     navigate("/login");
   };
 
-  const tryRefreshToken = async () => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (!user?.refreshToken) {
-      console.warn("Brak refresh tokena — wylogowuję użytkownika ❌");
-      logout();
-      return false;
-    }
-
-    try {
-      const response = await fetch("http://34.56.66.163/api/Users/refresh", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ refreshToken: user.refreshToken }),
-      });
-
-      if (!response.ok) {
-        const err = await response.json().catch(() => null);
-        console.error("Refresh token failed:", err);
-        logout();
-        return false;
-      }
-
-      const data = await response.json();
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          ...user,
-          accessToken: data.accessToken,
-          refreshToken: data.refreshToken,
-        })
-      );
-
-      console.log("✅ Token refreshed successfully");
-      return true;
-    } catch (error) {
-      console.error("Error refreshing token:", error);
-      logout();
-      return false;
-    }
-  };
-
   const handleLogin = async (e) => {
     e.preventDefault();
 

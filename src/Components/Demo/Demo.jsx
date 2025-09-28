@@ -7,6 +7,8 @@ import morskieOko from "../../assets/pictures/morskie-oko.png";
 import poloninaWetlinska from "../../assets/pictures/polonina-wetlinska.png";
 import sniardwy from "../../assets/pictures/sniardwy.png";
 import DemoLeftSectionTitle from "./DemoLeftSectionTitle/DemoLeftSectionTitle";
+import apiFetch from "../../../apifetch.js";
+
 
 const Demo = () => {
   const places = [
@@ -42,10 +44,30 @@ const Demo = () => {
   const [currentReelIndex, setCurrentReelIndex] = useState(0);
   const [savedPlaces, setSavedPlaces] = useState([]);
 
-  const handleSavePlace = (place) => {
+  const handleSavePlace = async (place) => {
     if (!savedPlaces.some((p) => p.title === place.title)) {
       setSavedPlaces([...savedPlaces, place]);
+      try {
+        await uploadSavedPlace(place);
+        console.log("✅ Place saved successfully");
+      } catch (err) {
+        console.warn("❌ Save failed:", err.message);
+        alert(err.message);
+      }
     }
+  };
+
+  const uploadSavedPlace = async (place) => {
+    const response = await apiFetch("/api/UserPlaces/addNewPlace", {
+      method: "POST",
+      body: JSON.stringify(place)
+    });
+      if (!response.ok) {
+        console.error("Failed to save place:", await response.text());
+      }
+      else{
+        console.log("Place saved successfully");
+      }
   };
 
   const onSwipeUp = () => {
@@ -56,6 +78,29 @@ const Demo = () => {
     handleSavePlace(places[currentReelIndex]);
     setCurrentReelIndex((prevIndex) => (prevIndex + 1) % places.length);
   };
+
+  useEffect(() => {
+    const fetchSavedPlaces = async () => {
+      try {
+        const response = await apiFetch("/api/UserPlaces/getPlaces", { method: "GET" });
+
+        if (!response.ok) {
+          console.warn("⚠️ Błąd pobierania miejsc:", await response.text());
+          return;
+        }
+
+        const data = await response.json();
+        console.log("📦 Pobrane miejsca:", data.places);
+
+        setSavedPlaces(data.places || []);
+      } catch (error) {
+        console.error("❌ Błąd połączenia:", error);
+      }
+    };
+
+    fetchSavedPlaces();
+  }, []);
+
 
   return (
     <div className="demo-page">
