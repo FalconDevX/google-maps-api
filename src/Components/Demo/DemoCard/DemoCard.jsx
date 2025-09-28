@@ -44,7 +44,7 @@ const DemoCard = ({ location, country, title, description, tags = [], image, onS
           const offsetY = info.offset.y;
           const offsetX = info.offset.x;
 
-          if (offsetY < -180 || offsetY > 190 || offsetX > 200 || offsetX < -200) {
+          if (offsetY < -180 || offsetX > 200 || offsetX < -200) {
             onSwipeUp();
             animate(x, 0, { type: "spring", stiffness: 300, damping: 20 });
             animate(y, 0, { type: "spring", stiffness: 300, damping: 20 });
