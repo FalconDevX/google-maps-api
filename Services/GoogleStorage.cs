@@ -188,7 +188,7 @@ namespace WebAPI.Services
             _logger.LogInformation("[GoogleStorage] Created empty votes.json for {UserId} - {Username}", userId, username);
         }
 
-        public async Task<List<string>> GetUserVotesFromFileAsync(int userId, string username)
+        public async Task<List<(string Key, int Value)>> GetUserVotesFromFileAsync(int userId, string username)
         {
             var objectName = $"{userId}_{username}/votes.json";
 
@@ -201,15 +201,16 @@ namespace WebAPI.Services
                 using var reader = new StreamReader(memoryStream);
                 var json = await reader.ReadToEndAsync();
 
-                return JsonSerializer.Deserialize<List<string>>(json) ?? new List<string>();
+                return JsonSerializer.Deserialize<List<(string Key, int Value)>>(json)
+                       ?? new List<(string Key, int Value)>();
             }
             catch (Google.GoogleApiException ex) when (ex.Error.Code == 404)
             {
-                return new List<string>();
+                return new List<(string Key, int Value)>();
             }
         }
 
-        public async Task<bool> UploadUserVotesFromFileAsync(int userId, string username, List<string> userVotesList)
+        public async Task<bool> UploadUserVotesFromFileAsync(int userId, string username, List<(string Key, int Value)> userVotesList)
         {
             var objectName = $"{userId}_{username}/votes.json";
 
@@ -217,15 +218,32 @@ namespace WebAPI.Services
             var bytes = Encoding.UTF8.GetBytes(newJson);
 
             using var uploadStream = new MemoryStream(bytes);
-            
+
             await _storageClient.UploadObjectAsync(
                 _bucketName,
                 objectName,
                 "application/json",
                 uploadStream
             );
+
             _logger.LogInformation("[GoogleStorage] Uploaded updated votes.json for {UserId} - {Username}", userId, username);
             return true;
+        }
+
+        public async Task AddVoteAsync(int userId, string username, int value, string placeTag) //value should be -1 0 or 1
+        {
+            List<(string Key, int Value)> votes = await GetUserVotesFromFileAsync(userId, username);
+            for (int i = 0; i < votes.Count; i++)
+            {
+                if (votes[i].Key == placeTag)
+                {
+                    votes[i] = (placeTag, votes[i].Value + value);
+                    return;
+                }
+            }
+
+            votes.Add((placeTag, value));
+            await UploadUserVotesFromFileAsync(userId, username, votes);
         }
     }
 }
