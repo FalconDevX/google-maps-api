@@ -6,6 +6,7 @@ using System.Numerics;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
+using WebAPI.DTOs;
 
 namespace WebAPI.Services
 {
@@ -64,10 +65,11 @@ namespace WebAPI.Services
             _logger.LogInformation("[GoogleStorage] Created empty places.json for {UserId} - {Username}", userId, username);
         }
 
-        public async Task AddUserPlaceToListFileAsync(int userId, string username, string placeName)
+        public async Task AddUserPlaceToListFileAsync(int userId, string username, UserSavedPlacesDto newPlace)
+
         {
             var objectName = $"{userId}_{username}/places.json";
-            List<string> places;
+            List<UserSavedPlacesDto> places;
 
             try
             {
@@ -77,20 +79,20 @@ namespace WebAPI.Services
 
                 using var reader = new StreamReader(memoryStream);
                 var json = await reader.ReadToEndAsync();
-                places = JsonSerializer.Deserialize<List<string>>(json) ?? new List<string>();
+                places = JsonSerializer.Deserialize<List<UserSavedPlacesDto>>(json) ?? new List<UserSavedPlacesDto>();
             }
             catch (Google.GoogleApiException ex) when (ex.Error.Code == 404)
             {
-                places = new List<string>();
+                places = new List<UserSavedPlacesDto>();
             }
 
-            if (places.Contains(placeName))
+            if (places.Any(p => p.Title == newPlace.Title))
             {
-                _logger.LogInformation("[GoogleStorage] Place '{PlaceName}' already exists in {ObjectName}", placeName, objectName);
+                _logger.LogInformation("[GoogleStorage] Place '{PlaceName}' already exists in {ObjectName}", newPlace.Title, objectName);
                 return;
             }
 
-            places.Add(placeName);
+            places.Add(newPlace);
 
             var newJson = JsonSerializer.Serialize(places, new JsonSerializerOptions { WriteIndented = true });
             var bytes = Encoding.UTF8.GetBytes(newJson);

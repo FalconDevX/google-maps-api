@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using WebAPI.Services;
 using WebAPI.DTOs;
+using WebAPI.Services;
+using System.Security.Claims;
 
 namespace WebAPI.Controllers
 {
@@ -15,21 +17,68 @@ namespace WebAPI.Controllers
         {
             _googleStorage = googleStorage;
         }
+
         [HttpPost("addNewPlace")]
-        public async Task<IActionResult> AddUserPlace([FromBody] AddUserPlace dto)
+        [Authorize]
+        public async Task<IActionResult> AddNewPlace([FromBody] UserSavedPlacesDto placeDto)
         {
-            if (string.IsNullOrWhiteSpace(dto.PlaceName))
-                return BadRequest("PlaceName is required");
-
-            await _googleStorage.AddUserPlaceToListFileAsync(dto.UserId, dto.Username, dto.PlaceName);
-
-            return Ok(new
+            try
             {
-                dto.UserId,
-                dto.Username,
-                addedPlace = dto.PlaceName,
-                message = $"Dodano miejsce '{dto.PlaceName}' do użytkownika {dto.Username}"
-            });
+                // 🔹 Sprawdź autoryzację
+                if (User?.Identity == null || !User.Identity.IsAuthenticated)
+                {
+                    return Unauthorized(new
+                    {
+                        reason = "User not authenticated",
+                        tokenHeader = Request.Headers["Authorization"].ToString()
+                    });
+                }
+
+                // 🔹 Zbierz claimy do debugowania
+                var claims = User.Claims.ToDictionary(c => c.Type, c => c.Value);
+
+                // 🔹 Pobierz ID użytkownika (NameIdentifier = sub)
+                var subClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var nameClaim = User.Identity?.Name ?? "unknown";
+
+                if (string.IsNullOrEmpty(subClaim) || string.IsNullOrEmpty(nameClaim))
+                {
+                    return BadRequest(new
+                    {
+                        reason = "Missing expected claims (sub / name)",
+                        receivedClaims = claims,
+                        tokenHeader = Request.Headers["Authorization"].ToString()
+                    });
+                }
+
+                // 🔹 Konwersja sub → int
+                if (!int.TryParse(subClaim, out int userId))
+                {
+                    return BadRequest(new { reason = "Invalid 'sub' claim value", sub = subClaim });
+                }
+
+                // 🔹 Zapisz miejsce
+                await _googleStorage.AddUserPlaceToListFileAsync(userId, nameClaim, placeDto);
+
+                // ✅ Sukces
+                return Ok(new
+                {
+                    message = "Place saved successfully",
+                    userId,
+                    username = nameClaim,
+                    claims
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    reason = "Internal exception",
+                    message = ex.Message,
+                    stack = ex.StackTrace,
+                    tokenHeader = Request.Headers["Authorization"].ToString()
+                });
+            }
         }
 
         [HttpGet("getPlaces")]
