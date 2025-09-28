@@ -86,8 +86,9 @@ namespace WebAPI.Controllers
             });
         }
         [HttpPost("uploadVotes")]
-        public async Task<IActionResult> UploadUserVotes([FromQuery] int userId, [FromQuery] string username, [FromQuery] List<string> userVotes)
+        public async Task<IActionResult> UploadUserVotes([FromQuery] List<string> userVotes)
         {
+            var (userId, username) = User.GetUserInfo();
             var success = await _googleStorage.UploadUserVotesFromFileAsync(userId, username, userVotes);
 
             return Ok(new
@@ -99,8 +100,9 @@ namespace WebAPI.Controllers
             });
         }
         [HttpGet("getVotes")]
-        public async Task<IActionResult> GetUserVotes([FromQuery] int userId, [FromQuery] string username)
+        public async Task<IActionResult> GetUserVotes()
         {
+            var (userId, username) = User.GetUserInfo();
             var content = await _googleStorage.GetUserVotesFromFileAsync(userId, username);
             if (content == null || content.Count == 0)
             {
