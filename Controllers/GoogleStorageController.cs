@@ -51,22 +51,48 @@ namespace WebAPI.Controllers
 
 
         [HttpGet("getPlaces")]
-        public async Task<IActionResult> GetUserPlaces([FromQuery] int userId, [FromQuery] string username)
+        [Authorize]
+        public async Task<IActionResult> GetUserPlaces()
         {
-            var content = await _googleStorage.GetUserPlacesFromFileAsync(userId, username);
-
-            if (content == null || content.Count == 0)
+            try
             {
-                return NotFound($"Brak miejsc dla użytkownika {username}");
+                var (userId, username) = User.GetUserInfo();
+
+                var places = await _googleStorage.GetUserPlacesFromFileAsync(userId, username);
+
+                if (places == null || !places.Any())
+                {
+                    return Ok(new
+                    {
+                        message = "No saved places found",
+                        userId,
+                        username,
+                        places = new List<UserSavedPlacesDto>()
+                    });
+                }
+
+                return Ok(new
+                {
+                    message = "Places fetched successfully",
+                    userId,
+                    username,
+                    places
+                });
             }
-
-            return Ok(new
+            catch (UnauthorizedAccessException ex)
             {
-                UserId = userId,
-                Username = username,
-                Places = content
-            });
+                return Unauthorized(new { reason = ex.Message });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { reason = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
         }
+
 
         [HttpDelete("deletePlace")]
         public async Task<IActionResult> DeleteUserPlace([FromQuery] int userId, [FromQuery] string username, [FromQuery] string placeName)
