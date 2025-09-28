@@ -24,7 +24,6 @@ namespace WebAPI.Controllers
         {
             try
             {
-                // 🔹 Sprawdź autoryzację
                 if (User?.Identity == null || !User.Identity.IsAuthenticated)
                 {
                     return Unauthorized(new
@@ -34,10 +33,8 @@ namespace WebAPI.Controllers
                     });
                 }
 
-                // 🔹 Zbierz claimy do debugowania
                 var claims = User.Claims.ToDictionary(c => c.Type, c => c.Value);
 
-                // 🔹 Pobierz ID użytkownika (NameIdentifier = sub)
                 var subClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                 var nameClaim = User.Identity?.Name ?? "unknown";
 
@@ -51,16 +48,13 @@ namespace WebAPI.Controllers
                     });
                 }
 
-                // 🔹 Konwersja sub → int
                 if (!int.TryParse(subClaim, out int userId))
                 {
                     return BadRequest(new { reason = "Invalid 'sub' claim value", sub = subClaim });
                 }
 
-                // 🔹 Zapisz miejsce
                 await _googleStorage.AddUserPlaceToListFileAsync(userId, nameClaim, placeDto);
 
-                // ✅ Sukces
                 return Ok(new
                 {
                     message = "Place saved successfully",

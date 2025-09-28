@@ -47,9 +47,7 @@ builder.Services.AddAuthentication(options =>
         ValidAudience = "AppUsers",
         IssuerSigningKey = new SymmetricSecurityKey(key),
         ClockSkew = TimeSpan.Zero,
-
         NameClaimType = "name",
-
         RoleClaimType = "role"
     };
 
