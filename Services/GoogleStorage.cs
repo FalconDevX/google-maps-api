@@ -111,7 +111,6 @@ namespace WebAPI.Services
             return true; 
         }
 
-
         public async Task<List<UserSavedPlacesDto>> GetUserPlacesFromFileAsync(int userId, string username)
         {
             var objectName = $"{userId}_{username}/places.json";
