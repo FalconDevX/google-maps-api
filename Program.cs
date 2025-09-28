@@ -56,12 +56,12 @@ builder.Services.AddAuthentication(options =>
     {
         OnAuthenticationFailed = context =>
         {
-            Console.WriteLine($"❌ JWT ERROR: {context.Exception.GetType().Name} - {context.Exception.Message}");
+            Console.WriteLine($"ERROR: {context.Exception.GetType().Name} - {context.Exception.Message}");
             return Task.CompletedTask;
         },
         OnChallenge = context =>
         {
-            Console.WriteLine("⚠️ Unauthorized request - no valid JWT found");
+            Console.WriteLine("Unauthorized request - no valid JWT found");
             return Task.CompletedTask;
         }
     };

@@ -24,54 +24,23 @@ namespace WebAPI.Controllers
         {
             try
             {
-                if (User?.Identity == null || !User.Identity.IsAuthenticated)
-                {
-                    return Unauthorized(new
-                    {
-                        reason = "User not authenticated",
-                        tokenHeader = Request.Headers["Authorization"].ToString()
-                    });
-                }
+                var (userId, username) = User.GetUserInfo();
 
-                var claims = User.Claims.ToDictionary(c => c.Type, c => c.Value);
+                await _googleStorage.AddUserPlaceToListFileAsync(userId, username, placeDto);
 
-                var subClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                var nameClaim = User.Identity?.Name ?? "unknown";
-
-                if (string.IsNullOrEmpty(subClaim) || string.IsNullOrEmpty(nameClaim))
-                {
-                    return BadRequest(new
-                    {
-                        reason = "Missing expected claims (sub / name)",
-                        receivedClaims = claims,
-                        tokenHeader = Request.Headers["Authorization"].ToString()
-                    });
-                }
-
-                if (!int.TryParse(subClaim, out int userId))
-                {
-                    return BadRequest(new { reason = "Invalid 'sub' claim value", sub = subClaim });
-                }
-
-                await _googleStorage.AddUserPlaceToListFileAsync(userId, nameClaim, placeDto);
-
-                return Ok(new
-                {
-                    message = "Place saved successfully",
-                    userId,
-                    username = nameClaim,
-                    claims
-                });
+                return Ok(new { message = "Place saved successfully" });
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(new { reason = ex.Message });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { reason = ex.Message });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new
-                {
-                    reason = "Internal exception",
-                    message = ex.Message,
-                    stack = ex.StackTrace,
-                    tokenHeader = Request.Headers["Authorization"].ToString()
-                });
+                return StatusCode(500, new { message = ex.Message });
             }
         }
 
