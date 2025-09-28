@@ -85,5 +85,33 @@ namespace WebAPI.Controllers
                 message = $"Usunięto miejsce '{placeName}' dla użytkownika {username}"
             });
         }
+        [HttpPost("uploadVotes")]
+        public async Task<IActionResult> UploadUserVotes([FromQuery] int userId, [FromQuery] string username, [FromQuery] List<string> userVotes)
+        {
+            var success = await _googleStorage.UploadUserVotesFromFileAsync(userId, username, userVotes);
+
+            return Ok(new
+            {
+                UserId = userId,
+                Username = username,
+                
+                message = $"Zaktualizowano listę zainteresowań użytkownika {username}"
+            });
+        }
+        [HttpGet("getVotes")]
+        public async Task<IActionResult> GetUserVotes([FromQuery] int userId, [FromQuery] string username)
+        {
+            var content = await _googleStorage.GetUserVotesFromFileAsync(userId, username);
+            if (content == null || content.Count == 0)
+            {
+                return NotFound($"Brak zapisanych zainteresowań użytkownika {username}");
+            }
+            return Ok(new
+            {
+                UserId = userId,
+                Username = username,
+                Votes = content
+            });
+        }
     }
 }

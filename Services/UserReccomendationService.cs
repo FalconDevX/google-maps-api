@@ -1,9 +1,13 @@
 ﻿using System.Diagnostics;
+using System.Text.Json;
 
 namespace WebAPI.Services
 {
     public class UserRecommendationService
     {
+        public UserRecommendationService() { }
+
+
         public string FetchPlaces(string args = "")
         {
             var psi = new ProcessStartInfo

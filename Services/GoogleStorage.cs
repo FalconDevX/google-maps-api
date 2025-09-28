@@ -64,6 +64,8 @@ namespace WebAPI.Services
 
             _logger.LogInformation("[GoogleStorage] Created empty places.json for {UserId} - {Username}", userId, username);
         }
+        
+
 
         public async Task<bool> AddUserPlaceToListFileAsync(int userId, string username, UserSavedPlacesDto newPlace)
         {
@@ -174,6 +176,56 @@ namespace WebAPI.Services
 
             return true;
         }
+        public async Task CreateUserVotesJsonAsync(int userId, string username)
+        {
+            var objectName = $"{userId}_{username}/votes.json";
+            using var stream = new MemoryStream(new byte[0]);
 
+            _logger.LogInformation("[GoogleStorage] Creating empty votes.json for {UserId} - {Username}", userId, username);
+
+            await _storageClient.UploadObjectAsync(_bucketName, objectName, "application/json", stream);
+
+            _logger.LogInformation("[GoogleStorage] Created empty votes.json for {UserId} - {Username}", userId, username);
+        }
+
+        public async Task<List<string>> GetUserVotesFromFileAsync(int userId, string username)
+        {
+            var objectName = $"{userId}_{username}/votes.json";
+
+            try
+            {
+                using var memoryStream = new MemoryStream();
+                await _storageClient.DownloadObjectAsync(_bucketName, objectName, memoryStream);
+                memoryStream.Position = 0;
+
+                using var reader = new StreamReader(memoryStream);
+                var json = await reader.ReadToEndAsync();
+
+                return JsonSerializer.Deserialize<List<string>>(json) ?? new List<string>();
+            }
+            catch (Google.GoogleApiException ex) when (ex.Error.Code == 404)
+            {
+                return new List<string>();
+            }
+        }
+
+        public async Task<bool> UploadUserVotesFromFileAsync(int userId, string username, List<string> userVotesList)
+        {
+            var objectName = $"{userId}_{username}/votes.json";
+
+            var newJson = JsonSerializer.Serialize(userVotesList, new JsonSerializerOptions { WriteIndented = true });
+            var bytes = Encoding.UTF8.GetBytes(newJson);
+
+            using var uploadStream = new MemoryStream(bytes);
+            
+            await _storageClient.UploadObjectAsync(
+                _bucketName,
+                objectName,
+                "application/json",
+                uploadStream
+            );
+            _logger.LogInformation("[GoogleStorage] Uploaded updated votes.json for {UserId} - {Username}", userId, username);
+            return true;
+        }
     }
 }

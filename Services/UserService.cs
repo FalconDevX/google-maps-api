@@ -184,6 +184,7 @@ namespace WebAPI.Services
             await _db.SaveChangesAsync();
 
             await _googleStorage.CreateUserFolderAsync(user.Id, user.Username);
+            await _googleStorage.CreateUserVotesJsonAsync(user.Id, user.Username);
 
             var (accessToken, refreshToken) = _tokenService.GenerateTokens(user);
 
