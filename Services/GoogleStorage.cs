@@ -65,8 +65,7 @@ namespace WebAPI.Services
             _logger.LogInformation("[GoogleStorage] Created empty places.json for {UserId} - {Username}", userId, username);
         }
 
-        public async Task AddUserPlaceToListFileAsync(int userId, string username, UserSavedPlacesDto newPlace)
-
+        public async Task<bool> AddUserPlaceToListFileAsync(int userId, string username, UserSavedPlacesDto newPlace)
         {
             var objectName = $"{userId}_{username}/places.json";
             List<UserSavedPlacesDto> places;
@@ -84,12 +83,14 @@ namespace WebAPI.Services
             catch (Google.GoogleApiException ex) when (ex.Error.Code == 404)
             {
                 places = new List<UserSavedPlacesDto>();
+
+                await CreateUserFolderAsync(userId, username);
             }
 
             if (places.Any(p => p.Title == newPlace.Title))
             {
                 _logger.LogInformation("[GoogleStorage] Place '{PlaceName}' already exists in {ObjectName}", newPlace.Title, objectName);
-                return;
+                return false; 
             }
 
             places.Add(newPlace);
@@ -104,7 +105,10 @@ namespace WebAPI.Services
                 "application/json",
                 uploadStream
             );
+
+            return true; 
         }
+
 
         public async Task<List<string>> GetUserPlacesFromFileAsync(int userId, string username)
         {

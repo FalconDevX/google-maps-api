@@ -26,7 +26,12 @@ namespace WebAPI.Controllers
             {
                 var (userId, username) = User.GetUserInfo();
 
-                await _googleStorage.AddUserPlaceToListFileAsync(userId, username, placeDto);
+                bool added = await _googleStorage.AddUserPlaceToListFileAsync(userId, username, placeDto);
+
+                if (!added)
+                {
+                    return Conflict(new { message = "Place already exists" }); 
+                }
 
                 return Ok(new { message = "Place saved successfully" });
             }
@@ -43,6 +48,7 @@ namespace WebAPI.Controllers
                 return StatusCode(500, new { message = ex.Message });
             }
         }
+
 
         [HttpGet("getPlaces")]
         public async Task<IActionResult> GetUserPlaces([FromQuery] int userId, [FromQuery] string username)

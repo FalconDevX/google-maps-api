@@ -10,8 +10,8 @@ namespace WebAPI.Services
             if (user == null || !user.Identity!.IsAuthenticated)
                 throw new UnauthorizedAccessException("User not authenticated");
 
-            var sub = user.FindFirst("sub")?.Value
-                      ?? throw new InvalidOperationException("Missing 'sub' claim");
+            var sub = user.FindFirst(ClaimTypes.NameIdentifier)?.Value
+                       ?? throw new InvalidOperationException("Missing 'sub' claim");
 
             var name = user.FindFirst("name")?.Value
                        ?? throw new InvalidOperationException("Missing 'name' claim");
