@@ -49,17 +49,22 @@ const DemoCard = ({ location, country, title, description, tags = [], image, onS
             animate(x, 0, { type: "spring", stiffness: 300, damping: 20 });
             animate(y, 0, { type: "spring", stiffness: 300, damping: 20 });
           }
-
-          if (offsetY > 190) {
+          else if (offsetY > 190) 
+          {
             onSwipeDown();
             animate(x, 0, { type: "spring", stiffness: 300, damping: 20 });
             animate(y, 0, { type: "spring", stiffness: 300, damping: 20 });
           }
-
-          if (offsetY > 180) {
+          else if (offsetY > 180) 
+          {
             animate(x, 0, { type: "spring", stiffness: 300, damping: 20 });
             animate(y, 0, { type: "spring", stiffness: 300, damping: 20 });
           }
+          else{
+            animate(x, 0, { type: "spring", stiffness: 300, damping: 20 });
+            animate(y, 0, { type: "spring", stiffness: 300, damping: 20 });
+          }
+        
         }}
 
       >

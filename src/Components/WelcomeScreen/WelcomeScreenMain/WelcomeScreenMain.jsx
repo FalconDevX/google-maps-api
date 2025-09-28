@@ -3,8 +3,16 @@ import LoginPanel from "../LoginPanel/LoginPanel";
 import RegistrationPanel from "../RegistrationPanel/RegistrationPanel";
 import "./WelcomeScreenMain.css";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const WelcomeScreenMain = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    setIsLoggedIn(!!user);
+  }, []);
+
   return (
     <div className="welcome-screen-main">
       <Header />
@@ -24,12 +32,20 @@ const WelcomeScreenMain = () => {
           </p>
         </div>
 
-        {/* tu wstawiamy zmienne panele */}
-        <Routes>
-          <Route index element={<LoginPanel />} />
-          <Route path="register" element={<RegistrationPanel />} />
-          <Route path="*" element={<Navigate to="." />} />
-        </Routes>
+        {!isLoggedIn && (
+          <Routes>
+            <Route index element={<LoginPanel />} />
+            <Route path="register" element={<RegistrationPanel />} />
+            <Route path="*" element={<Navigate to="." />} />
+          </Routes>
+        )}
+        
+        {isLoggedIn && (
+          <div className="welcome-message">
+            <h2>Witaj z powrotem! 👋</h2>
+            <p>Jesteś już zalogowany. Przejdź do panelu, aby kontynuować planowanie podróży.</p>
+          </div>
+        )}
       </div>
     </div>
   );

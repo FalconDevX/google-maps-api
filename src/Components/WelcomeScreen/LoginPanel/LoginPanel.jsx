@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginPanel.css";
 import googleIcon from "../../../assets/social-icons/google-icon.webp";
@@ -8,9 +8,9 @@ import githubIcon from "../../../assets/social-icons/github-icon.png";
 const LoginPanel = () => {
   const navigate = useNavigate();
 
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [error, setError] = React.useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const logout = () => {
     localStorage.removeItem("user");
@@ -20,6 +20,7 @@ const LoginPanel = () => {
   const tryRefreshToken = async () => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user?.refreshToken) {
+      console.warn("Brak refresh tokena — wylogowuję użytkownika ❌");
       logout();
       return false;
     }
@@ -39,15 +40,17 @@ const LoginPanel = () => {
       }
 
       const data = await response.json();
-      localStorage.setItem("user", JSON.stringify({
-        ...user,
-        accessToken: data.accessToken,
-        refreshToken: data.refreshToken,
-      }));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          ...user,
+          accessToken: data.accessToken,
+          refreshToken: data.refreshToken,
+        })
+      );
 
-      console.log("Token refreshed successfully ✅");
+      console.log("✅ Token refreshed successfully");
       return true;
-
     } catch (error) {
       console.error("Error refreshing token:", error);
       logout();
@@ -56,7 +59,7 @@ const LoginPanel = () => {
   };
 
   const handleLogin = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     try {
       const response = await fetch("http://34.56.66.163/api/Users/login", {
@@ -76,13 +79,13 @@ const LoginPanel = () => {
       console.log("✅ Login successful:", data);
 
       localStorage.setItem("user", JSON.stringify(data));
-      navigate("/"); 
-
+      navigate("/demo");
     } catch (error) {
       console.error("Error logging in:", error);
       setError("Wystąpił błąd podczas logowania.");
     }
   };
+
 
   return (
     <div className="login-panel">

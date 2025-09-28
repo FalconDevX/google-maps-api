@@ -21,16 +21,42 @@ const DemoSearchBar = ({ results, setResults, activeIndex, setActiveIndex, onSav
 
         abortController.current = new AbortController();
 
+        const user = JSON.parse(localStorage.getItem("user"));
+        const token = user?.accessToken;
+
+        if (!token) {
+            console.error("Brak tokenu autoryzacji");
+            setResults([]);
+            return;
+        }
+
         const url = `http://34.56.66.163/api/GoogleMaps/getAutocompletePredictions?query=${encodeURIComponent(query)}`;
-        fetch(url, { signal: abortController.current.signal })
-            .then(response => response.json())
+        fetch(url, { 
+            signal: abortController.current.signal,
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
             .then(data => {
                 if (!query || query.trim() === "") {
                     setResults([]);
                     return;
                 }
-                const results = data.map(item => item.placePrediction.text.text);
-                setResults(results);
+                // Sprawdź czy data jest tablicą przed wywołaniem map()
+                if (Array.isArray(data)) {
+                    const results = data.map(item => item.placePrediction.text.text);
+                    setResults(results);
+                } else {
+                    console.warn("API zwróciło nieoczekiwane dane:", data);
+                    setResults([]);
+                }
             })
             .catch(err => {
                 if (err.name === "AbortError") return; 

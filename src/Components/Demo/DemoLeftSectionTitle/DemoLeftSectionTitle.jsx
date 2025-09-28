@@ -16,7 +16,7 @@ const DemoLeftSectionTitle = () => {
     }, []);
     return (
 
-    <h1>👋 Witaj{username ? `, ${username}` : ""}!</h1>
+    <h1>👋 Witaj{username ? `, ${username}` : ""} !</h1>
   )
 }
 

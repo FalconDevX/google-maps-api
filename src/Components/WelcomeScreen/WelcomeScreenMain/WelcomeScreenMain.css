@@ -50,3 +50,45 @@
   margin: 0;
   max-width: 500px;
 }
+
+.welcome-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  padding: 0.8rem 1.2rem;  
+  background: rgba(39, 51, 40, 0.6);
+  border: 1px solid rgba(142, 193, 53, 0.25);
+  border-radius: 12px;
+
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  max-width: 280px;  
+  max-height: 100px;      
+  margin: 20vh auto;
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+}
+
+.welcome-message:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  border-color: rgba(142, 193, 53, 0.4);
+}
+
+.welcome-message h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #d1fae5;
+  margin: 0 0 0.2rem 0;  
+  text-shadow: 0 0 6px rgba(16, 185, 129, 0.2);
+}
+
+.welcome-message p {
+  font-size: 0.85rem;
+  color: #a3bfa8;
+  margin: 0;
+  line-height: 1.3;
+}
+

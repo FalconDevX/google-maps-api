@@ -8,7 +8,6 @@ import poloninaWetlinska from "../../assets/pictures/polonina-wetlinska.png";
 import sniardwy from "../../assets/pictures/sniardwy.png";
 import DemoLeftSectionTitle from "./DemoLeftSectionTitle/DemoLeftSectionTitle";
 
-
 const Demo = () => {
   const places = [
     {
@@ -42,14 +41,6 @@ const Demo = () => {
 
   const [currentReelIndex, setCurrentReelIndex] = useState(0);
   const [savedPlaces, setSavedPlaces] = useState([]);
-  const [username, setUsername] = useState('');
-
-  useEffect(() => {
-    const storedUsername = localStorage.getItem('username');
-    if (storedUsername) {
-      setUsername(storedUsername);
-    }
-  }, []); 
 
   const handleSavePlace = (place) => {
     if (!savedPlaces.some((p) => p.title === place.title)) {
@@ -66,8 +57,6 @@ const Demo = () => {
     setCurrentReelIndex((prevIndex) => (prevIndex + 1) % places.length);
   };
 
-  const displayName = username;
-
   return (
     <div className="demo-page">
       <DemoHeader />
@@ -75,7 +64,6 @@ const Demo = () => {
           <div className="demo-left-section">
             <DemoLeftSectionTitle />
           </div>
-
 
         <DemoCard
           location={places[currentReelIndex].location}
@@ -110,7 +98,6 @@ const Demo = () => {
                   ))}
                 </ul>
               )}
-
           </div>
 
           <div className="panel-card">
