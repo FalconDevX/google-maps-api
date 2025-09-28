@@ -29,7 +29,7 @@ public class UsersController : ControllerBase
         return Ok(users);
     }
 
-    [HttpGet("getUserById/{id}")]
+    [HttpGet("me")]
     public async Task<ActionResult<UserDto>> GetUserById(int id)
     {
         var user = await _userService.GetUserByIdAsync(id);
@@ -113,5 +113,5 @@ public class UsersController : ControllerBase
 
         return user;
     }
-    
+
 }
