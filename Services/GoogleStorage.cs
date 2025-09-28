@@ -110,7 +110,7 @@ namespace WebAPI.Services
         }
 
 
-        public async Task<List<string>> GetUserPlacesFromFileAsync(int userId, string username)
+        public async Task<List<UserSavedPlacesDto>> GetUserPlacesFromFileAsync(int userId, string username)
         {
             var objectName = $"{userId}_{username}/places.json";
 
@@ -123,11 +123,11 @@ namespace WebAPI.Services
                 using var reader = new StreamReader(memoryStream);
                 var json = await reader.ReadToEndAsync();
 
-                return JsonSerializer.Deserialize<List<string>>(json) ?? new List<string>();
+                return JsonSerializer.Deserialize<List<UserSavedPlacesDto>>(json) ?? new List<UserSavedPlacesDto>();
             }
             catch (Google.GoogleApiException ex) when (ex.Error.Code == 404)
             {
-                return new List<string>();
+                return new List<UserSavedPlacesDto>();
             }
         }
 
