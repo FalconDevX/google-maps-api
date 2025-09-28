@@ -56,43 +56,18 @@ builder.Services.AddAuthentication(options =>
 
     options.Events = new JwtBearerEvents
     {
-        OnAuthenticationFailed = async context =>
+        OnAuthenticationFailed = context =>
         {
-            if (!context.Response.HasStarted)
-            {
-                context.Response.ContentType = "application/json";
-                context.Response.StatusCode = 401;
-
-                if (context.Exception is SecurityTokenExpiredException)
-                {
-                    await context.Response.WriteAsJsonAsync(new { reason = "AccessTokenExpired" });
-                }
-                else
-                {
-                    await context.Response.WriteAsJsonAsync(new { reason = "InvalidToken" });
-                }
-            }
+            Console.WriteLine($"❌ JWT ERROR: {context.Exception.GetType().Name} - {context.Exception.Message}");
+            return Task.CompletedTask;
         },
-
-        OnChallenge = async context =>
+        OnChallenge = context =>
         {
-            if (!context.Response.HasStarted)
-            {
-                context.HandleResponse();
-                context.Response.StatusCode = 401;
-                context.Response.ContentType = "application/json";
-
-                if (string.IsNullOrEmpty(context.Request.Headers["Authorization"]))
-                {
-                    await context.Response.WriteAsJsonAsync(new { reason = "MissingToken" });
-                }
-                else
-                {
-                    await context.Response.WriteAsJsonAsync(new { reason = "UnauthorizedAccess" });
-                }
-            }
+            Console.WriteLine("⚠️ Unauthorized request - no valid JWT found");
+            return Task.CompletedTask;
         }
     };
+
 });
 
 builder.Services.AddCors(options =>
